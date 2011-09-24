@@ -23,9 +23,10 @@ import org.json.JSONObject;
 public class ClientTest {
 	
 	//private static final String HTTPS_BASE_URL = "http://mobilepulse.tr-sandbox.appspot.com/rest/";
-	private static final String HTTPS_BASE_URL = "http://localhost:8888/rest/";  //development server.  Run->Run As->Web Application
+	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
-	private static final String FEEDBACK_RESOURCE_URI = "feedback";
+	private static final String FEEDBACK_RESOURCE_URI = "rest/feedback";
+	private static final String AUDIO_URI = "audio";
 
 	private static int totalAssertCount = 0;
 	private static int passingAssertCount = 0;
@@ -91,7 +92,12 @@ public class ClientTest {
 		// PARAMS:: verifyUpdateFeedback(String theFeedbackId, String theNewStatus)
 		//verifyUpdateFeedback("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA", "new");
 		//verifyUpdateFeedback("bad_id", "new");
-
+		
+		// =========
+		// GET AUDIO
+		// =========
+		// PARMS:: verifyGetAudio(String theFeedbackId)
+		verifyGetAudio("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA");
 	}
 	
 	private static String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice) {
@@ -178,47 +184,21 @@ public class ClientTest {
 	}
 	
 	
-	private static String verifyUpdateUser(String theFirstName, String theLastName, String thePassword, String thePhoneNumber,
-			  String theIsNetworkAuthenticated, String thePasswordResetQuestion, String thePasswordResetAnswer, 
-			  String theUserIconOneId, String theUserIconOneAlias, String theUserIconOneImage, String theUserIconTwoId,
-			  String theUserIconTwoAlias, String theUserIconTwoImage, Integer theAutoArchiveDayCount, String theFakePhoto,
-			  String theLatitude, String theLongitude, String theToken) {
-		if(isLoggingEnabled) System.out.println("\n\nverifyUpdateUser() starting .....\n");
-		String urlStr = HTTPS_BASE_URL + FEEDBACK_RESOURCE_URI;
+	private static void verifyGetAudio(String theFeedbackId) {
+		System.out.println("\n\n verifyGetAudio() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + AUDIO_URI + "/" + theFeedbackId;
 		System.out.println("urlStr = " + urlStr + "\n");
-		JSONObject json = new JSONObject();
-		String token = "";
+		
 		try {
-			if(theFirstName != null) json.put("firstName", theFirstName);
-			if(theLastName != null) json.put("lastName", theLastName);
-			if(thePassword != null) json.put("password", thePassword);
-			if(theIsNetworkAuthenticated != null) json.put("isNetworkAuthenticated", theIsNetworkAuthenticated);
-			if(thePhoneNumber != null) json.put("phoneNumber", thePhoneNumber);
-			if(thePasswordResetQuestion != null) json.put("passwordResetQuestion", thePasswordResetQuestion);
-			if(thePasswordResetAnswer != null) json.put("passwordResetAnswer", thePasswordResetAnswer);
-			if(theUserIconOneId != null) json.put("userIconOneId", theUserIconOneId);
-			if(theUserIconOneAlias != null) json.put("userIconOneAlias", theUserIconOneAlias);
-			if(theUserIconOneImage != null) json.put("userIconOneImage", theUserIconOneImage);
-			if(theUserIconTwoId != null) json.put("userIconTwoId", theUserIconTwoId);
-			if(theUserIconTwoAlias != null) json.put("userIconTwoAlias", theUserIconTwoAlias);
-			if(theUserIconTwoImage != null) json.put("userIconTwoImage", theUserIconTwoImage);
-			if(theAutoArchiveDayCount != null) json.put("autoArchiveDayCount", theAutoArchiveDayCount);
-			if(theLatitude != null) json.put("latitude", theLatitude);
-			if(theLongitude != null) json.put("longitude", theLongitude);
-			System.out.println(json.toString());
-			
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theToken);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			System.out.println("\n");
-		} catch (JSONException e) {
-			e.printStackTrace();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("verifyUpdateUser() complete");
+			System.out.println("verifyGetAudio() complete\n");
 		}
-		return token;
 	}
 	
 	// theUrl: complete url
