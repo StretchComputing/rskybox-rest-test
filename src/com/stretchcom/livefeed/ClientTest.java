@@ -22,11 +22,14 @@ import org.json.JSONObject;
 
 public class ClientTest {
 	
-	//private static final String HTTPS_BASE_URL = "http://mobilepulse.tr-sandbox.appspot.com/rest/";
+	//private static final String HTTPS_BASE_URL = "http://mobilepulse.tr-sandbox.appspot.com/";
 	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String FEEDBACK_RESOURCE_URI = "rest/feedback";
+	private static final String CRASH_DETECT_RESOURCE_URI = "rest/crashDetects";
 	private static final String AUDIO_URI = "audio";
+	private static final String CRASH_STACK_DATA_URI = "crashStackData";
+	private static final String CRASH_STACK_DATA_FILE_EXTENSION = ".plcrash";
 
 	private static int totalAssertCount = 0;
 	private static int passingAssertCount = 0;
@@ -66,13 +69,11 @@ public class ClientTest {
 		// CRTEATE FEEDBACK
 		// ================
 		// PARAMS:: String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice)
-		String recordedDate = "2011-10-22 05:55";
-		String userName = "joew";
-		String instanceUrl = "http://fruition18.service-now.com/";
-		String voice = "Terry, put your base64 encodedvoice data in here";
-		verifyCreateFeedback("joew", recordedDate, instanceUrl, voice);
-
-		//verifyGetListOfFeedback();
+//		String recordedDate = "2011-10-22 05:55";
+//		String userName = "joew";
+//		String instanceUrl = "http://fruition18.service-now.com/";
+//		String voice = "Terry, put your base64 encodedvoice data in here";
+//		verifyCreateFeedback(userName, recordedDate, instanceUrl, voice);
 		
 		// ====================
 		// GET LIST OF FEEDBACK
@@ -97,7 +98,43 @@ public class ClientTest {
 		// GET AUDIO
 		// =========
 		// PARMS:: verifyGetAudio(String theFeedbackId)
-		verifyGetAudio("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA");
+		//verifyGetAudio("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA");
+		
+		// ====================
+		// CRTEATE CRASH DETECT
+		// ====================
+		// PARAMS:: String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData)
+//		String summary = "this record has REAL base64 encoded crash stack data";
+//		String detectedDate = "2011-10-26 05:55";
+//		String userName = "joew";
+//		String instanceUrl = "http://fruition18.service-now.com/";
+//		String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
+//		verifyCreateCrashDetect(summary, userName, detectedDate, instanceUrl, crashStackDataBase64);
+		
+		// =========================
+		// GET LIST OF CRASH DETECTS
+		// =========================
+		// PARAMS:: verifyGetListOfCrashDetects()
+		//verifyGetListOfCrashDetects();
+		
+		// =====================
+		// GET CRASH DETECT INFO
+		// =====================
+		// PARAMS:: verifyGetCrashDetectInfo(String theCrashDetectId)
+		//verifyGetCrashDetectInfo("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA");
+		
+		// ===================
+		// UPDATE CRASH DETECT
+		// ===================
+		// PARAMS:: verifyUpdateCrashDetect(String theCrashDetectId, String theNewStatus)
+		//verifyUpdateCrashDetect("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA", "new");
+		//verifyUpdateCrashDetect("bad_id", "new");
+		
+		// ====================
+		// GET CRASH STACK DATA
+		// ====================
+		// PARMS:: verifyGetCrashStackData(String theCrashDetectId)
+		//verifyGetCrashStackData("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA");
 	}
 	
 	private static String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice) {
@@ -183,7 +220,6 @@ public class ClientTest {
 		}
 	}
 	
-	
 	private static void verifyGetAudio(String theFeedbackId) {
 		System.out.println("\n\n verifyGetAudio() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + AUDIO_URI + "/" + theFeedbackId;
@@ -198,6 +234,107 @@ public class ClientTest {
 			e.printStackTrace();
 		} finally {
 			System.out.println("verifyGetAudio() complete\n");
+		}
+	}
+	
+	private static String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData) {
+		if(isLoggingEnabled) System.out.println("\n\n verifyCreateCrashDetect() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI;
+		JSONObject json = new JSONObject();
+		String token = "";
+		try {
+			if(theSummary != null) json.put("summary", theSummary);
+			if(theUserName != null) json.put("userName", theUserName);
+			if(theDetectedDate != null) json.put("detectedDate", theDetectedDate);
+			if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
+			if(theCrashStackData != null) json.put("stackData", theCrashStackData);
+			
+			System.out.println(json.toString());
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			JSONObject jsonReturn = new JSONObject(response);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyCreateCrashDetect() complete");
+		}
+		return token;
+	}
+	
+	private static void verifyGetListOfCrashDetects() {
+		System.out.println("\n\n verifyGetListOfCrashDetects() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetListOfCrashDetects() complete\n");
+		}
+	}
+	
+	private static void verifyGetCrashDetectInfo(String theCrashDetectId) {
+		System.out.println("\n\n verifyGetCrashDetectInfo() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI + "/" + theCrashDetectId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetCrashDetectInfo() complete\n");
+		}
+	}
+	
+	private static void verifyUpdateCrashDetect(String theCrashDetectId, String theNewStatus) {
+		System.out.println("\n\n verifyUpdateCrashDetect() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI + "/" + theCrashDetectId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		JSONObject json = new JSONObject();
+		
+		try {
+			json.put("status", theNewStatus);
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyUpdateCrashDetect() complete\n");
+		}
+	}
+	
+	private static void verifyGetCrashStackData(String theCrashDetectId) {
+		System.out.println("\n\n verifyGetCrashStackData() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CRASH_STACK_DATA_URI + "/" + theCrashDetectId + CRASH_STACK_DATA_FILE_EXTENSION;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetCrashStackData() complete\n");
 		}
 	}
 	
