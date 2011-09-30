@@ -30,6 +30,7 @@ public class ClientTest {
 	private static final String AUDIO_URI = "audio";
 	private static final String CRASH_STACK_DATA_URI = "crashStackData";
 	private static final String CRASH_STACK_DATA_FILE_EXTENSION = ".plcrash";
+	private static final String CLIENT_LOG_RESOURCE_URI = "rest/clientLogs";
 
 	private static int totalAssertCount = 0;
 	private static int passingAssertCount = 0;
@@ -135,6 +136,36 @@ public class ClientTest {
 		// ====================
 		// PARMS:: verifyGetCrashStackData(String theCrashDetectId)
 		//verifyGetCrashStackData("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA");
+		
+		// ==================
+		// CRTEATE CLIENT LOG
+		// ==================
+		// PARAMS:: String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace)
+//		String userName = "joew";
+//		String instanceUrl = "http://fruition18.service-now.com/";
+//		String logLevel = "error";
+//		String message = "the is the first client log message ever created";
+//		String stackBackTrace = "method1() method2() method3()";
+//		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
+		
+		// =======================
+		// GET LIST OF CLIENT LOGS
+		// =======================
+		// PARAMS:: verifyGetListOfClientLogs()
+		//verifyGetListOfClientLogs();
+		
+		// ===================
+		// GET CLIENT LOG INFO
+		// ===================
+		// PARAMS:: verifyGetClientLogsInfo(String theClientLogId)
+		//verifyGetClientLogsInfo("agp0ci1zYW5kYm94cg8LEglDbGllbnRMb2cYGQw");
+		
+		// =================
+		// UPDATE CLIENT LOG
+		// =================
+		// PARAMS:: verifyUpdateClientLog(String theClientLogId, String theNewStatus)
+		//verifyUpdateClientLog("agp0ci1zYW5kYm94cg8LEglDbGllbnRMb2cYGQw", "archived");
+		//verifyUpdateClientLog("bad_id", "new");
 	}
 	
 	private static String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice) {
@@ -335,6 +366,90 @@ public class ClientTest {
 			e.printStackTrace();
 		} finally {
 			System.out.println("verifyGetCrashStackData() complete\n");
+		}
+	}
+	
+	private static String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace) {
+		if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI;
+		JSONObject json = new JSONObject();
+		String token = "";
+		try {
+			if(theUserName != null) json.put("userName", theUserName);
+			if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
+			if(theLogLevel != null) json.put("logLevel", theLogLevel);
+			if(theMessage != null) json.put("message", theMessage);
+			if(theStackBackTrace != null) json.put("stackBackTrace", theStackBackTrace);
+			
+			System.out.println(json.toString());
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			JSONObject jsonReturn = new JSONObject(response);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyCreateClientLog() complete");
+		}
+		return token;
+	}
+	
+	private static void verifyGetListOfClientLogs() {
+		System.out.println("\n\n verifyGetListOfClientLogs() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetListOfClientLogs() complete\n");
+		}
+	}
+	
+	private static void verifyGetClientLogsInfo(String theClientLogId) {
+		System.out.println("\n\n verifyGetClientLogsInfo() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI + "/" + theClientLogId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetClientLogsInfo() complete\n");
+		}
+	}
+	
+	private static void verifyUpdateClientLog(String theClientLogId, String theNewStatus) {
+		System.out.println("\n\n verifyUpdateClientLog() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI + "/" + theClientLogId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		JSONObject json = new JSONObject();
+		
+		try {
+			json.put("status", theNewStatus);
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyUpdateClientLog() complete\n");
 		}
 	}
 	
