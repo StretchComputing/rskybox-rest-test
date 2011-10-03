@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,7 +71,7 @@ public class ClientTest {
 		// CRTEATE FEEDBACK
 		// ================
 		// PARAMS:: String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice)
-//		String recordedDate = "2011-10-22 05:55";
+//		String recordedDate = "2011-10-24 13:21";
 //		String userName = "joew";
 //		String instanceUrl = "http://fruition18.service-now.com/";
 //		String voice = "Terry, put your base64 encodedvoice data in here";
@@ -79,20 +80,23 @@ public class ClientTest {
 		// ====================
 		// GET LIST OF FEEDBACK
 		// ====================
-		// PARAMS:: verifyGetListOfFeedback()
-		//verifyGetListOfFeedback();
+		// PARAMS:: verifyGetListOfFeedback(String theStatus)
+		//verifyGetListOfFeedback(null); // default status of "new"
+		//verifyGetListOfFeedback("new");
+		//verifyGetListOfFeedback("archived");
+		verifyGetListOfFeedback("all");
 		
 		// =================
 		// GET FEEDBACK INFO
 		// =================
 		// PARAMS:: verifyGetFeedbackInfo(String theFeedbackId)
-		//verifyGetFeedbackInfo("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA");
+		//verifyGetFeedbackInfo("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgjDA");
 		
 		// ===============
 		// UPDATE FEEDBACK
 		// ===============
 		// PARAMS:: verifyUpdateFeedback(String theFeedbackId, String theNewStatus)
-		//verifyUpdateFeedback("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA", "new");
+		//verifyUpdateFeedback("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgeDA", "archived");
 		//verifyUpdateFeedback("bad_id", "new");
 		
 		// =========
@@ -106,7 +110,7 @@ public class ClientTest {
 		// ====================
 		// PARAMS:: String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData)
 //		String summary = "this record has REAL base64 encoded crash stack data";
-//		String detectedDate = "2011-10-26 05:55";
+//		String detectedDate = "2011-10-27 23:12";
 //		String userName = "joew";
 //		String instanceUrl = "http://fruition18.service-now.com/";
 //		String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
@@ -115,27 +119,30 @@ public class ClientTest {
 		// =========================
 		// GET LIST OF CRASH DETECTS
 		// =========================
-		// PARAMS:: verifyGetListOfCrashDetects()
-		//verifyGetListOfCrashDetects();
+		// PARAMS:: verifyGetListOfCrashDetects(String theStatus)
+		//verifyGetListOfCrashDetects(null); // default of 'new' status
+		//verifyGetListOfCrashDetects("new");
+		//verifyGetListOfCrashDetects("archived");
+		//verifyGetListOfCrashDetects("all");
 		
 		// =====================
 		// GET CRASH DETECT INFO
 		// =====================
 		// PARAMS:: verifyGetCrashDetectInfo(String theCrashDetectId)
-		//verifyGetCrashDetectInfo("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA");
+		//verifyGetCrashDetectInfo("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgkDA");
 		
 		// ===================
 		// UPDATE CRASH DETECT
 		// ===================
 		// PARAMS:: verifyUpdateCrashDetect(String theCrashDetectId, String theNewStatus)
-		//verifyUpdateCrashDetect("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA", "new");
+		//verifyUpdateCrashDetect("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA", "archived");
 		//verifyUpdateCrashDetect("bad_id", "new");
 		
 		// ====================
 		// GET CRASH STACK DATA
 		// ====================
 		// PARMS:: verifyGetCrashStackData(String theCrashDetectId)
-		//verifyGetCrashStackData("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgVDA");
+		//verifyGetCrashStackData("agp0ci1zYW5kYm94chELEgtDcmFzaERldGVjdBgfDA");
 		
 		// ==================
 		// CRTEATE CLIENT LOG
@@ -144,21 +151,24 @@ public class ClientTest {
 //		String userName = "joew";
 //		String instanceUrl = "http://fruition18.service-now.com/";
 //		String logLevel = "error";
-//		String message = "the is the first client log message ever created";
+//		String message = "first client log message after date refactoring";
 //		String stackBackTrace = "method1() method2() method3()";
 //		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
 		
 		// =======================
 		// GET LIST OF CLIENT LOGS
 		// =======================
-		// PARAMS:: verifyGetListOfClientLogs()
-		//verifyGetListOfClientLogs();
+		// PARAMS:: verifyGetListOfClientLogs(String theStatus)
+		//verifyGetListOfClientLogs(null); // default status of 'new'
+		//verifyGetListOfClientLogs("new");
+		//verifyGetListOfClientLogs("archived");
+		//verifyGetListOfClientLogs("all");
 		
 		// ===================
 		// GET CLIENT LOG INFO
 		// ===================
 		// PARAMS:: verifyGetClientLogsInfo(String theClientLogId)
-		//verifyGetClientLogsInfo("agp0ci1zYW5kYm94cg8LEglDbGllbnRMb2cYGQw");
+		//verifyGetClientLogsInfo("agp0ci1zYW5kYm94cg8LEglDbGllbnRMb2cYJQw");
 		
 		// =================
 		// UPDATE CLIENT LOG
@@ -175,7 +185,7 @@ public class ClientTest {
 		String token = "";
 		try {
 			if(theUserName != null) json.put("userName", theUserName);
-			if(theRecordedDate != null) json.put("recordedDate", theRecordedDate);
+			if(theRecordedDate != null) json.put("date", theRecordedDate);
 			if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
 			if(theVoice != null) json.put("voice", theVoice);
 			
@@ -195,9 +205,13 @@ public class ClientTest {
 		return token;
 	}
 	
-	private static void verifyGetListOfFeedback() {
+	private static void verifyGetListOfFeedback(String theStatus) {
 		System.out.println("\n\n verifyGetListOfFeedback() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + FEEDBACK_RESOURCE_URI;
+		if(theStatus != null) {
+			String encodedStatus = ClientTest.encode(theStatus);
+			urlStr = urlStr + "?" + "status=" + encodedStatus;
+		}
 		System.out.println("urlStr = " + urlStr + "\n");
 		
 		try {
@@ -276,7 +290,7 @@ public class ClientTest {
 		try {
 			if(theSummary != null) json.put("summary", theSummary);
 			if(theUserName != null) json.put("userName", theUserName);
-			if(theDetectedDate != null) json.put("detectedDate", theDetectedDate);
+			if(theDetectedDate != null) json.put("date", theDetectedDate);
 			if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
 			if(theCrashStackData != null) json.put("stackData", theCrashStackData);
 			
@@ -296,9 +310,13 @@ public class ClientTest {
 		return token;
 	}
 	
-	private static void verifyGetListOfCrashDetects() {
+	private static void verifyGetListOfCrashDetects(String theStatus) {
 		System.out.println("\n\n verifyGetListOfCrashDetects() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI;
+		if(theStatus != null) {
+			String encodedStatus = ClientTest.encode(theStatus);
+			urlStr = urlStr + "?" + "status=" + encodedStatus;
+		}
 		System.out.println("urlStr = " + urlStr + "\n");
 		
 		try {
@@ -397,9 +415,13 @@ public class ClientTest {
 		return token;
 	}
 	
-	private static void verifyGetListOfClientLogs() {
+	private static void verifyGetListOfClientLogs(String theStatus) {
 		System.out.println("\n\n verifyGetListOfClientLogs() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI;
+		if(theStatus != null) {
+			String encodedStatus = ClientTest.encode(theStatus);
+			urlStr = urlStr + "?" + "status=" + encodedStatus;
+		}
 		System.out.println("urlStr = " + urlStr + "\n");
 		
 		try {
@@ -559,6 +581,16 @@ public class ClientTest {
 		}
 
 		return response;
+	}
+	
+	private static String encode(String theInput) {
+		String output = "";
+		try {
+			output = URLEncoder.encode(theInput, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("encode exception = " + e.getMessage());
+		}
+		return output;
 	}
 }	
 
