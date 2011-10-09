@@ -32,6 +32,7 @@ public class ClientTest {
 	private static final String CRASH_STACK_DATA_URI = "crashStackData";
 	private static final String CRASH_STACK_DATA_FILE_EXTENSION = ".plcrash";
 	private static final String CLIENT_LOG_RESOURCE_URI = "rest/clientLogs";
+	private static final String USER_RESOURCE_URI = "rest/users";
 
 	private static int totalAssertCount = 0;
 	private static int passingAssertCount = 0;
@@ -176,6 +177,38 @@ public class ClientTest {
 		// PARAMS:: verifyUpdateClientLog(String theClientLogId, String theNewStatus)
 		//verifyUpdateClientLog("agp0ci1zYW5kYm94cg8LEglDbGllbnRMb2cYGQw", "archived");
 		//verifyUpdateClientLog("bad_id", "new");
+		
+		// ==================
+		// CRTEATE USER
+		// ==================
+		// PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
+	    //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+//		String firstName = "john";
+//		String lastName = "Doe";
+//		String emailAddress = "jdoe@stretchcom.com";
+//		String phoneNumber = "6302156979";
+//		String mobileCarrierId = "103";
+//		Boolean sendEmailNotifications = true;
+//		Boolean sendSmsNotifications = false;
+//		verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
+		
+		// =================
+		// GET LIST OF USERS
+		// =================
+		// PARAMS:: verifyGetListOfUsers()
+		//verifyGetListOfUsers();
+		
+		// =============
+		// GET USER INFO
+		// =============
+		// PARAMS:: verifyGetUserInfo(String theClientLogId)
+		//verifyGetUserInfo("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYAgw");
+		
+		// ===========
+		// UPDATE USER
+		// ===========
+		// PARAMS:: verifyUpdateUser(String theUserId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+		//verifyUpdateUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYAgw", false, false);
 	}
 	
 	private static String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice) {
@@ -472,6 +505,94 @@ public class ClientTest {
 			e.printStackTrace();
 		} finally {
 			System.out.println("verifyUpdateClientLog() complete\n");
+		}
+	}
+	
+	private static String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
+			    Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
+		if(isLoggingEnabled) System.out.println("\n\n verifyCreateUser() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI;
+		JSONObject json = new JSONObject();
+		String token = "";
+		try {
+			if(theFirstName != null) json.put("firstName", theFirstName);
+			if(theLastName != null) json.put("lastName", theLastName);
+			if(theEmailAddress != null) json.put("emailAddress", theEmailAddress);
+			if(thePhoneNumber != null) json.put("phoneNumber", thePhoneNumber);
+			if(theMobileCarrierId != null) json.put("mobileCarrierId", theMobileCarrierId);
+			if(theSendEmailNotifications != null) json.put("sendEmailNotifications", theSendEmailNotifications);
+			if(theSendSmsNotifications != null) json.put("sendSmsNotifications", theSendSmsNotifications);
+			
+			System.out.println(json.toString());
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			JSONObject jsonReturn = new JSONObject(response);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyCreateUser() complete");
+		}
+		return token;
+	}
+	
+	private static void verifyGetListOfUsers() {
+		System.out.println("\n\n verifyGetListOfUsers() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetListOfUsers() complete\n");
+		}
+	}
+	
+	private static void verifyGetUserInfo(String theUserId) {
+		System.out.println("\n\n verifyGetUserInfo() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetUserInfo() complete\n");
+		}
+	}
+	
+	private static void verifyUpdateUser(String theUserId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
+		System.out.println("\n\n verifyUpdateUser() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		JSONObject json = new JSONObject();
+		
+		try {
+			if(theSendEmailNotifications !=null) json.put("sendEmailNotifications", theSendEmailNotifications);
+			if(theSendSmsNotifications !=null) json.put("sendSmsNotifications", theSendSmsNotifications);
+			
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyUpdateUser() complete\n");
 		}
 	}
 	
