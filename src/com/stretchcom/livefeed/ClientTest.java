@@ -84,7 +84,7 @@ public class ClientTest {
 		//verifyGetListOfFeedback(null); // default status of "new"
 		//verifyGetListOfFeedback("new");
 		//verifyGetListOfFeedback("archived");
-		verifyGetListOfFeedback("all");
+		//verifyGetListOfFeedback("all");
 		
 		// =================
 		// GET FEEDBACK INFO
