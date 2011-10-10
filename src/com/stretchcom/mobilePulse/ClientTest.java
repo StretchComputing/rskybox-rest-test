@@ -1,4 +1,4 @@
-package com.stretchcom.livefeed;
+package com.stretchcom.mobilePulse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
