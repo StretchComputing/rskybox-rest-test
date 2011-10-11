@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 public class ClientTest {
 	
-	//private static final String HTTPS_BASE_URL = "http://mobilepulse.tr-sandbox.appspot.com/";
+	//private static final String HTTPS_BASE_URL = "http://mobile-pulse.appspot.com/";
 	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String FEEDBACK_RESOURCE_URI = "rest/feedback";
@@ -148,15 +148,15 @@ public class ClientTest {
 		//verifyGetCrashStackData("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GBIM");
 		
 		// ==================
-		// CRTEATE CLIENT LOG
+		// CREATE CLIENT LOG
 		// ==================
 		// PARAMS:: String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace)
-//		String userName = "sJobs";
-//		String instanceUrl = "http://fruition18.service-now.com/";
-//		String logLevel = "error";
-//		String message = "first client log message after date refactoring";
-//		String stackBackTrace = "method1() method2() method3()";
-//		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
+		String userName = "BigJoe55";
+		String instanceUrl = "http://fruition18.service-now.com/";
+		String logLevel = "error";
+		String message = "learning to love country music";
+		String stackBackTrace = "method1() method2() method3() methodX()";
+		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
 		
 		// =======================
 		// GET LIST OF CLIENT LOGS
@@ -185,14 +185,29 @@ public class ClientTest {
 		// ==================
 		// PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
 	    //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
-//		String firstName = "Steve";
-//		String lastName = "Jobs";
-//		String emailAddress = "sJobs@apple.com";
+//		String firstName = "Joe";
+//		String lastName = "Wroblewski";
+//		String emailAddress = "joepwro@gmail.com";
 //		String phoneNumber = "6302156979";
 //		String mobileCarrierId = "103";
-//		//String mobileCarrierId = "555";
 //		Boolean sendEmailNotifications = true;
-//		Boolean sendSmsNotifications = false;
+//		Boolean sendSmsNotifications = true;
+//
+//		String firstName = "Nick";
+//		String lastName = "Wroblewski";
+//		String emailAddress = "njw438@gmail.com";
+//		String phoneNumber = "7089458201";
+//		String mobileCarrierId = "103";
+//		Boolean sendEmailNotifications = true;
+//		Boolean sendSmsNotifications = true;
+//
+//		String firstName = "Terry";
+//		String lastName = "Roe";
+//		String emailAddress = "terryroe@gmail.com";
+//		String phoneNumber = "5743491522";
+//		String mobileCarrierId = "103";
+//		Boolean sendEmailNotifications = true;
+//		Boolean sendSmsNotifications = true;
 //		verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
 		
 		// =================
@@ -205,19 +220,24 @@ public class ClientTest {
 		// GET USER INFO
 		// =============
 		// PARAMS:: verifyGetUserInfo(String theClientLogId)
-		//verifyGetUserInfo("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYFAw");
+		//verifyGetUserInfo("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYGQw");
+		//verifyGetUserInfo("current"); // get info for "current" user
 		
 		// ===========
 		// UPDATE USER
 		// ===========
-		// PARAMS:: verifyUpdateUser(String theUserId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
-		//verifyUpdateUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYFAw", true, true);
+		// PARAMS:: verifyUpdateUser(String theUserId, String thePhoneNumber, String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+//		String phoneNumber = "5743491522";
+//		String mobileCarrierId = "103";
+//		Boolean sendEmailNotifications = false;
+//		Boolean sendSmsNotifications = false;
+//		verifyUpdateUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYGQw", phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
 		
 		// ===========================
 		// GET LIST OF MOBILE CARRIERS
 		// ===========================
 		// PARAMS:: verifyGetListOfMobileCarriers()
-		verifyGetListOfMobileCarriers();
+		//verifyGetListOfMobileCarriers();
 	}
 	
 	private static String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice) {
@@ -582,13 +602,16 @@ public class ClientTest {
 		}
 	}
 	
-	private static void verifyUpdateUser(String theUserId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
+	private static void verifyUpdateUser(String theUserId, String thePhoneNumber, String theMobileCarrierId,
+			                             Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
 		System.out.println("\n\n verifyUpdateUser() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
 		System.out.println("urlStr = " + urlStr + "\n");
 		JSONObject json = new JSONObject();
 		
 		try {
+			if(thePhoneNumber !=null) json.put("phoneNumber", thePhoneNumber);
+			if(theMobileCarrierId !=null) json.put("mobileCarrierId", theMobileCarrierId);
 			if(theSendEmailNotifications !=null) json.put("sendEmailNotifications", theSendEmailNotifications);
 			if(theSendSmsNotifications !=null) json.put("sendSmsNotifications", theSendSmsNotifications);
 			
