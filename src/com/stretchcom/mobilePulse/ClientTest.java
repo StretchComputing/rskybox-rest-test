@@ -23,8 +23,9 @@ import org.json.JSONObject;
 
 public class ClientTest {
 	
-	//private static final String HTTPS_BASE_URL = "http://mobile-pulse.appspot.com/";
-	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+	//private static final String HTTPS_BASE_URL = "http://1-1.mobile-pulse.appspot.com/";
+	private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
+	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String FEEDBACK_RESOURCE_URI = "rest/feedback";
 	private static final String CRASH_DETECT_RESOURCE_URI = "rest/crashDetects";
@@ -151,12 +152,12 @@ public class ClientTest {
 		// CREATE CLIENT LOG
 		// ==================
 		// PARAMS:: String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace)
-		String userName = "BigJoe55";
-		String instanceUrl = "http://fruition18.service-now.com/";
-		String logLevel = "error";
-		String message = "learning to love country music";
-		String stackBackTrace = "method1() method2() method3() methodX()";
-		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
+//		String userName = "BigJoeUpdated";
+//		String instanceUrl = "http://fruition18.service-now.com/";
+//		String logLevel = "error";
+//		String message = "learning to love country music";
+//		String stackBackTrace = "method1() method2() method3() methodX()";
+//		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
 		
 		// =======================
 		// GET LIST OF CLIENT LOGS
@@ -219,19 +220,29 @@ public class ClientTest {
 		// =============
 		// GET USER INFO
 		// =============
-		// PARAMS:: verifyGetUserInfo(String theClientLogId)
-		//verifyGetUserInfo("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYGQw");
+		// PARAMS:: verifyGetUserInfo(String theUserId)
+		//verifyGetUserInfo("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHgw");
 		//verifyGetUserInfo("current"); // get info for "current" user
 		
 		// ===========
 		// UPDATE USER
 		// ===========
-		// PARAMS:: verifyUpdateUser(String theUserId, String thePhoneNumber, String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+		// PARAMS:: verifyUpdateUser(String theUserId, String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber,
+        //                           String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+//		String firstName = "Issac";
+//		String lastName = "Newton";
+//		String emailAddress = "iNewton@physics.com";
 //		String phoneNumber = "5743491522";
 //		String mobileCarrierId = "103";
 //		Boolean sendEmailNotifications = false;
 //		Boolean sendSmsNotifications = false;
-//		verifyUpdateUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYGQw", phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
+//		verifyUpdateUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHgw", firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
+		
+		// ===========
+		// DELETE USER
+		// ===========
+		// PARAMS:: verifyDeleteUser(String theUserId)
+		//verifyDeleteUser("agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHgw");
 		
 		// ===========================
 		// GET LIST OF MOBILE CARRIERS
@@ -602,14 +613,17 @@ public class ClientTest {
 		}
 	}
 	
-	private static void verifyUpdateUser(String theUserId, String thePhoneNumber, String theMobileCarrierId,
-			                             Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
+	private static void verifyUpdateUser(String theUserId, String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber,
+			                             String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
 		System.out.println("\n\n verifyUpdateUser() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
 		System.out.println("urlStr = " + urlStr + "\n");
 		JSONObject json = new JSONObject();
 		
 		try {
+			if(theFirstName !=null) json.put("firstName", theFirstName);
+			if(theLastName !=null) json.put("lastName", theLastName);
+			if(theEmailAddress !=null) json.put("emailAddress", theEmailAddress);
 			if(thePhoneNumber !=null) json.put("phoneNumber", thePhoneNumber);
 			if(theMobileCarrierId !=null) json.put("mobileCarrierId", theMobileCarrierId);
 			if(theSendEmailNotifications !=null) json.put("sendEmailNotifications", theSendEmailNotifications);
@@ -625,6 +639,23 @@ public class ClientTest {
 			e.printStackTrace();
 		} finally {
 			System.out.println("verifyUpdateUser() complete\n");
+		}
+	}
+	
+	private static void verifyDeleteUser(String theUserId) {
+		System.out.println("\n\n verifyDeleteUser() starting .....\n");
+		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
+		System.out.println("urlStr = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_DELETE, null, "login", null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyDeleteUser() complete\n");
 		}
 	}
 	
