@@ -28,15 +28,15 @@ public class ClientTest {
 	//private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
 	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
-	private static final String FEEDBACK_RESOURCE_URI = "rest/feedback";
-	private static final String CRASH_DETECT_RESOURCE_URI = "rest/crashDetects";
+	private static final String FEEDBACK_RESOURCE_URI = "rest/v1/feedback";
+	private static final String CRASH_DETECT_RESOURCE_URI = "rest/v1/crashDetects";
 	private static final String AUDIO_URI = "audio";
 	private static final String CRASH_STACK_DATA_URI = "crashStackData";
 	private static final String CRASH_STACK_DATA_FILE_EXTENSION = ".plcrash";
-	private static final String CLIENT_LOG_RESOURCE_URI = "rest/clientLogs";
-	private static final String USER_RESOURCE_URI = "rest/users";
-	private static final String MOBILE_CARRIER_RESOURCE_URI = "rest/mobileCarriers";
-	private static final String BETA_TESTER_RESOURCE_URI = "rest/betaTesters";
+	private static final String CLIENT_LOG_RESOURCE_URI = "rest/v1/clientLogs";
+	private static final String USER_RESOURCE_URI = "rest/v1/users";
+	private static final String MOBILE_CARRIER_RESOURCE_URI = "rest/v1/mobileCarriers";
+	private static final String BETA_TESTER_RESOURCE_URI = "rest/v1/betaTesters";
 
 	private static int totalAssertCount = 0;
 	private static int passingAssertCount = 0;
@@ -96,20 +96,20 @@ public class ClientTest {
 		// =================
 		// PARAMS:: verifyGetFeedbackInfo(String theFeedbackId)
 		//verifyGetFeedbackInfo("agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGBEM");
-		//verifyGetFeedbackInfo("abc"); // illegal ID
+		//verifyGetFeedbackInfo("agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGCMM"); // illegal ID
 		
 		// ===============
 		// UPDATE FEEDBACK
 		// ===============
 		// PARAMS:: verifyUpdateFeedback(String theFeedbackId, String theNewStatus)
-		//verifyUpdateFeedback("agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGBEM", "archived");
+		//verifyUpdateFeedback("agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGCMM", "archived");
 		//verifyUpdateFeedback("bad_id", "new");
 		
 		// =========
 		// GET AUDIO
 		// =========
 		// PARMS:: verifyGetAudio(String theFeedbackId)
-		//verifyGetAudio("agp0ci1zYW5kYm94cg4LEghGZWVkYmFjaxgCDA");
+		//verifyGetAudio("agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGCMM");
 		
 		// ====================
 		// CRTEATE CRASH DETECT
@@ -135,20 +135,20 @@ public class ClientTest {
 		// GET CRASH DETECT INFO
 		// =====================
 		// PARAMS:: verifyGetCrashDetectInfo(String theCrashDetectId)
-		//verifyGetCrashDetectInfo("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GBIM");
+		//verifyGetCrashDetectInfo("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GCQM");
 		
 		// ===================
 		// UPDATE CRASH DETECT
 		// ===================
 		// PARAMS:: verifyUpdateCrashDetect(String theCrashDetectId, String theNewStatus)
-		//verifyUpdateCrashDetect("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GBIM", "archived");
+		//verifyUpdateCrashDetect("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GCQM", "archived");
 		//verifyUpdateCrashDetect("bad_id", "new");
 		
 		// ====================
 		// GET CRASH STACK DATA
 		// ====================
 		// PARMS:: verifyGetCrashStackData(String theCrashDetectId)
-		//verifyGetCrashStackData("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GBIM");
+		//verifyGetCrashStackData("agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GCQM");
 		
 		// ==================
 		// CREATE CLIENT LOG
@@ -174,13 +174,13 @@ public class ClientTest {
 		// GET CLIENT LOG INFO
 		// ===================
 		// PARAMS:: verifyGetClientLogsInfo(String theClientLogId)
-		//verifyGetClientLogsInfo("agxtb2JpbGUtcHVsc2VyDwsSCUNsaWVudExvZxgTDA");
+		//verifyGetClientLogsInfo("agxtb2JpbGUtcHVsc2VyDwsSCUNsaWVudExvZxglDA");
 		
 		// =================
 		// UPDATE CLIENT LOG
 		// =================
 		// PARAMS:: verifyUpdateClientLog(String theClientLogId, String theNewStatus)
-		//verifyUpdateClientLog("agxtb2JpbGUtcHVsc2VyDwsSCUNsaWVudExvZxgTDA", "archived");
+		//verifyUpdateClientLog("agxtb2JpbGUtcHVsc2VyDwsSCUNsaWVudExvZxglDA", "archived");
 		//verifyUpdateClientLog("bad_id", "new");
 		
 		// ============
@@ -233,7 +233,7 @@ public class ClientTest {
         //                           String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
 //		String firstName = "Issac";
 //		String lastName = "Newton";
-//		String emailAddress = "joepwro@gmail.com";
+//		String emailAddress = "joe@example.com";
 //		String phoneNumber = "5743491522";
 //		String mobileCarrierId = "103";
 //		Boolean sendEmailNotifications = false;
