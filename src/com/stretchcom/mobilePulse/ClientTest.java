@@ -25,8 +25,8 @@ import com.google.appengine.repackaged.com.google.common.util.Base64;
 public class ClientTest {
 	
 	//private static final String HTTPS_BASE_URL = "http://1-1.mobile-pulse.appspot.com/";
-	//private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
-	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+	private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
+	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String FEEDBACK_RESOURCE_URI = "rest/v1/feedback";
 	private static final String CRASH_DETECT_RESOURCE_URI = "rest/v1/crashDetects";
@@ -89,7 +89,7 @@ public class ClientTest {
 		//verifyGetListOfFeedback(null); // default status of "new"
 		//verifyGetListOfFeedback("new");
 		//verifyGetListOfFeedback("archived");
-		//verifyGetListOfFeedback("all");
+		verifyGetListOfFeedback("all");
 		
 		// =================
 		// GET FEEDBACK INFO
