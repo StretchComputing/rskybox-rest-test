@@ -25,8 +25,8 @@ import com.google.appengine.repackaged.com.google.common.util.Base64;
 public class ClientTest {
 	
 	//private static final String HTTPS_BASE_URL = "http://1-1.mobile-pulse.appspot.com/";
-	private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
-	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+	//private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
+	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String FEEDBACK_RESOURCE_URI = "rest/v1/feedback";
 	private static final String CRASH_DETECT_RESOURCE_URI = "rest/v1/crashDetects";
@@ -75,7 +75,7 @@ public class ClientTest {
 		// ================
 		// CRTEATE FEEDBACK
 		// ================
-		// PARAMS:: String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice)
+		// PARAMS:: String verifyCreateFeedback(String theUserName, String theRecordedDate, String theInstanceUrl, String theVoice, String aPrioriToken)
 //		String recordedDate = "2011-10-17 23:31";
 //		String userName = "dennisRitchie";
 //		String instanceUrl = "http://fruition18.service-now.com/";
@@ -89,7 +89,7 @@ public class ClientTest {
 		//verifyGetListOfFeedback(null); // default status of "new"
 		//verifyGetListOfFeedback("new");
 		//verifyGetListOfFeedback("archived");
-		verifyGetListOfFeedback("all");
+		//verifyGetListOfFeedback("all");
 		
 		// =================
 		// GET FEEDBACK INFO
@@ -114,13 +114,13 @@ public class ClientTest {
 		// ====================
 		// CRTEATE CRASH DETECT
 		// ====================
-		// PARAMS:: String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData)
+		// PARAMS:: String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData, String aPrioriToken)
 //		String summary = "Hero-- this record has REAL base64 encoded crash stack data";
 //		String detectedDate = "2011-10-10 23:12";
 //		String userName = "aEinstein";
 //		String instanceUrl = "http://fruition18.service-now.com/";
 //		String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
-//		verifyCreateCrashDetect(summary, userName, detectedDate, instanceUrl, crashStackDataBase64);
+//		verifyCreateCrashDetect(summary, userName, detectedDate, instanceUrl, crashStackDataBase64, A_PRIORI_TOKEN);
 		
 		// =========================
 		// GET LIST OF CRASH DETECTS
@@ -153,13 +153,13 @@ public class ClientTest {
 		// ==================
 		// CREATE CLIENT LOG
 		// ==================
-		// PARAMS:: String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace)
+		// PARAMS:: String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace, String aPrioriToken)
 //		String userName = "BigJoeUpdated";
 //		String instanceUrl = "http://fruition18.service-now.com/";
 //		String logLevel = "error";
 //		String message = "learning to love country music";
 //		String stackBackTrace = "method1() method2() method3() methodX()";
-//		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace);
+//		verifyCreateClientLog(userName, instanceUrl, logLevel, message, stackBackTrace, A_PRIORI_TOKEN);
 		
 		// =======================
 		// GET LIST OF CLIENT LOGS
@@ -186,8 +186,13 @@ public class ClientTest {
 		// ============
 		// CRTEATE USER
 		// ============
+		//
+		// NOTE: this test authenticates via the a priori token. Though this API is not called by a client app, the token is used to bypass authentication
+		//       in the filter. Without this token, the filter would have to be modified for test purposes to allow this call even though there is no
+		//       cookie sent with Google account info.  Longer, maybe add Google account cookie to the test instead -- if that's passible.
+		//
 		// PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-	    //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications)
+	    //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken)
 //		String firstName = "Joe";
 //		String lastName = "Wroblewski";
 //		String emailAddress = "joepwro@gmail.com";
@@ -255,7 +260,7 @@ public class ClientTest {
 		// ===================
 		// CRTEATE BETA TESTER
 		// ===================
-		// PARAMS:: String verifyCreateBetaTester(String theUserName, String theApplication, String theVersion, String theInstanceUrl)
+		// PARAMS:: String verifyCreateBetaTester(String theUserName, String theApplication, String theVersion, String theInstanceUrl, String aPrioriToken)
 //		String userName = "joew";
 //		String application = "LiveFeed";
 //		String version = "1.0";
@@ -264,13 +269,13 @@ public class ClientTest {
 //		String application = "LiveFeed";
 //		String version = "1.1";
 //		String instanceUrl = "fruition18.service-now.com";
-//		verifyCreateBetaTester(userName, application, version, instanceUrl);
+//		verifyCreateBetaTester(userName, application, version, instanceUrl, A_PRIORI_TOKEN);
 
 		// ========================
 		// GET LIST OF BETA TESTERS
 		// ========================
-		// PARAMS:: verifyGetListOfBetaTesters()
-		//verifyGetListOfBetaTesters();
+		// PARAMS:: verifyGetListOfBetaTesters(String aPrioriToken)
+		//verifyGetListOfBetaTesters(A_PRIORI_TOKEN);
 		
 		// ====================
 		// GET BETA TESTER INFO
@@ -390,7 +395,7 @@ public class ClientTest {
 		}
 	}
 	
-	private static String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData) {
+	private static String verifyCreateCrashDetect(String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl, String theCrashStackData, String aPrioriToken) {
 		if(isLoggingEnabled) System.out.println("\n\n verifyCreateCrashDetect() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + CRASH_DETECT_RESOURCE_URI;
 		JSONObject json = new JSONObject();
@@ -405,7 +410,7 @@ public class ClientTest {
 			System.out.println(json.toString());
 			
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			JSONObject jsonReturn = new JSONObject(response);
 		} catch (JSONException e) {
@@ -495,7 +500,7 @@ public class ClientTest {
 		}
 	}
 	
-	private static String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace) {
+	private static String verifyCreateClientLog(String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace, String aPrioriToken) {
 		if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + CLIENT_LOG_RESOURCE_URI;
 		JSONObject json = new JSONObject();
@@ -510,7 +515,7 @@ public class ClientTest {
 			System.out.println(json.toString());
 			
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			JSONObject jsonReturn = new JSONObject(response);
 		} catch (JSONException e) {
@@ -584,7 +589,7 @@ public class ClientTest {
 	}
 	
 	private static String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-			    Boolean theSendEmailNotifications, Boolean theSendSmsNotifications) {
+			    Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken) {
 		if(isLoggingEnabled) System.out.println("\n\n verifyCreateUser() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI;
 		JSONObject json = new JSONObject();
@@ -601,7 +606,7 @@ public class ClientTest {
 			System.out.println(json.toString());
 			
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			JSONObject jsonReturn = new JSONObject(response);
 		} catch (JSONException e) {
@@ -711,7 +716,7 @@ public class ClientTest {
 		}
 	}
 	
-	private static String verifyCreateBetaTester(String theUserName, String theApplication, String theVersion, String theInstanceUrl) {
+	private static String verifyCreateBetaTester(String theUserName, String theApplication, String theVersion, String theInstanceUrl, String aPrioriToken) {
 		if(isLoggingEnabled) System.out.println("\n\n verifyCreateBetaTester() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + BETA_TESTER_RESOURCE_URI;
 		JSONObject json = new JSONObject();
@@ -725,7 +730,7 @@ public class ClientTest {
 			System.out.println(json.toString());
 			
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), null, null);
+			String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			JSONObject jsonReturn = new JSONObject(response);
 		} catch (JSONException e) {
@@ -738,14 +743,14 @@ public class ClientTest {
 		return token;
 	}
 	
-	private static void verifyGetListOfBetaTesters() {
+	private static void verifyGetListOfBetaTesters(String aPrioriToken) {
 		System.out.println("\n\n verifyGetListOfBetaTesters() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + BETA_TESTER_RESOURCE_URI;
 		System.out.println("urlStr = " + urlStr + "\n");
 		
 		try {
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			System.out.println("\n");
 		} catch (MalformedURLException e) {
