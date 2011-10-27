@@ -216,13 +216,13 @@ public class ClientTest {
 //		String mobileCarrierId = "103";
 //		Boolean sendEmailNotifications = true;
 //		Boolean sendSmsNotifications = true;
-//		verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications);
+//		verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
 		
 		// =================
 		// GET LIST OF USERS
 		// =================
-		// PARAMS:: verifyGetListOfUsers()
-		//verifyGetListOfUsers();
+		// PARAMS:: verifyGetListOfUsers(String aPrioriToken)
+		//verifyGetListOfUsers(A_PRIORI_TOKEN);
 		
 		// =============
 		// GET USER INFO
@@ -619,14 +619,14 @@ public class ClientTest {
 		return token;
 	}
 	
-	private static void verifyGetListOfUsers() {
+	private static void verifyGetListOfUsers(String aPrioriToken) {
 		System.out.println("\n\n verifyGetListOfUsers() starting .....\n");
 		String urlStr = HTTPS_BASE_URL + USER_RESOURCE_URI;
 		System.out.println("urlStr = " + urlStr + "\n");
 		
 		try {
 			URL url = new URL(urlStr);
-			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
 			if(isLoggingEnabled) System.out.println("repStr = " + response);
 			System.out.println("\n");
 		} catch (MalformedURLException e) {
