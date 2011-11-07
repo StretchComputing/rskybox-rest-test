@@ -1,4 +1,4 @@
-package com.stretchcom.mobilePulse;
+package com.stretchcom.rskybox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,24 +9,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.appengine.repackaged.com.google.common.util.Base64;
 
 public class ClientTest {
 
-    //private static final String HTTPS_BASE_URL = "http://1-1.mobile-pulse.appspot.com/";
-    //private static final String HTTPS_BASE_URL = "http://1-2.mobile-pulse.appspot.com/";
-    private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+    private static final String HTTPS_BASE_URL = "http://rskybox-stretchcom.appspot.com/";
+    //private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
     private static final String REST_BASE_URL = HTTPS_BASE_URL + "rest/v1/";
 
     private static final String APPLICATION_RESOURCE_URI = "applications";
@@ -62,13 +53,22 @@ public class ClientTest {
         isLoggingEnabled = true;
 
         // Variables for GAE keys.  Replace with your own values.
-        String applicationId = "";
-        String theUserId = "";
-        String appMemberId = "";
-        String theFeedbackId = "";
-        String theCrashDetectId = "";
-        String theClientLogId = "";
-        String theBetaTesterId = "";
+        //String applicationId = "";
+        //String theUserId = "";
+        //String appMemberId = "";
+        //String theFeedbackId = "";
+        //String theCrashDetectId = "";
+        //String theClientLogId = "";
+        //String theBetaTesterId = "";
+
+        // rskybox-stretchcom.appspot.com values
+        //String applicationId = "ahRzfnJza3lib3gtc3RyZXRjaGNvbXISCxILQXBwbGljYXRpb24Y6QcM";
+        //String theUserId = "";
+        //String appMemberId = "ahRzfnJza3lib3gtc3RyZXRjaGNvbXIQCxIJQXBwTWVtYmVyGOoHDA";
+        //String theFeedbackId = "";
+        //String theCrashDetectId = "";
+        //String theClientLogId = "";
+        //String theBetaTesterId = "";
 
         // Joe's original values
         //String applicationId = "agxtb2JpbGUtcHVsc2VyEQsSC0FwcGxpY2F0aW9uGCcM";
@@ -107,8 +107,8 @@ public class ClientTest {
         // CREATE APPLICATION
         // ==================
         // PARAMS:: String verifyCreateApplication(String theName, String theVersion, String aPrioriToken)
-        //String name = "rTeam";
-        //String version = "3.0";
+        //String name = "rSkybox by StretchCom";
+        //String version = "1.0";
         //verifyCreateApplication(name, version, A_PRIORI_TOKEN);
 
         // ========================
@@ -348,7 +348,7 @@ public class ClientTest {
         // ===================
         // PARAMS:: String verifyCreateBetaTester(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String aPrioriToken, String aPrioriToken)
         //String userName = "joew";
-        //String application = "LiveFeed";
+        //String application = "livefeed";
         //String version = "1.0";
         //String instanceUrl = "fruition18.service-now.com";
 
