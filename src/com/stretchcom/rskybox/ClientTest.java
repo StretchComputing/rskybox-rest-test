@@ -16,8 +16,8 @@ import com.google.appengine.repackaged.com.google.common.util.Base64;
 
 public class ClientTest {
 
-    private static final String HTTPS_BASE_URL = "http://rskybox-stretchcom.appspot.com/";
-    //private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+    //private static final String HTTPS_BASE_URL = "http://rskybox-stretchcom.appspot.com/";
+    private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
     private static final String REST_BASE_URL = HTTPS_BASE_URL + "rest/v1/";
 
     private static final String APPLICATION_RESOURCE_URI = "applications";
