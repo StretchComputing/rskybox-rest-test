@@ -16,7 +16,7 @@ import com.google.appengine.repackaged.com.google.common.util.Base64;
 
 public class ClientTest {
 
-    //private static final String HTTPS_BASE_URL = "http://rskybox-stretchcom.appspot.com/";
+    //private static final String HTTPS_BASE_URL = "https://rskybox-stretchcom.appspot.com/";
     private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
     private static final String REST_BASE_URL = HTTPS_BASE_URL + "rest/v1/";
 
@@ -391,11 +391,7 @@ public class ClientTest {
         // Application
         String name = "rSkybox by StretchCom";
         String applicationId = verifyCreateApplication(name, version, A_PRIORI_TOKEN);
-        if (applicationId == "") {
-          return;
-        } else {
-          System.out.println("applicationId = " + applicationId);
-        }
+        if (applicationId.equals("")) { return; }
 
         // App Member
         String emailAddress = "joepwro@gmail.com";
@@ -455,6 +451,7 @@ public class ClientTest {
         // Beta Testers
         userName = "joew";
         String application = "livefeed";
+        verifyCreateBetaTester(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
 
         userName = "nickw";
         application = "LiveFeed";
