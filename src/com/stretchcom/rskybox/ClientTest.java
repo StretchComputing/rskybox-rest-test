@@ -389,13 +389,41 @@ public class ClientTest {
         String instanceUrl = "http://fruition18.service-now.com/";
         String version = "1.0";
 
+        // Users
+        String firstName = "Joe";
+        String lastName = "Wroblewski";
+        String emailAddress = "joepwro@gmail.com";
+        String phoneNumber = "6302156979";
+        String mobileCarrierId = "103";
+        Boolean sendEmailNotifications = true;
+        Boolean sendSmsNotifications = true;
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+
+        firstName = "Nick";
+        lastName = "Wroblewski";
+        emailAddress = "njw438@gmail.com";
+        phoneNumber = "7089458201";
+        mobileCarrierId = "103";
+        sendEmailNotifications = true;
+        sendSmsNotifications = true;
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+
+        firstName = "Terry";
+        lastName = "Roe";
+        emailAddress = "terryroe@gmail.com";
+        phoneNumber = "5743491522";
+        mobileCarrierId = "103";
+        sendEmailNotifications = true;
+        sendSmsNotifications = true;
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+
         // Application
         String name = "rSkybox by StretchCom";
         String applicationId = verifyCreateApplication(name, version, A_PRIORI_TOKEN);
         if (applicationId.equals("")) { return; }
 
         // App Member
-        String emailAddress = "joepwro@gmail.com";
+        emailAddress = "joepwro@gmail.com";
         String role = "owner";
         String appMemberId = verifyCreateAppMember(applicationId, emailAddress, role, A_PRIORI_TOKEN);
 
@@ -420,34 +448,6 @@ public class ClientTest {
         String message = "learning to love country music";
         String stackBackTrace = "method1() method2() method3() methodX()";
         verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, stackBackTrace, A_PRIORI_TOKEN);
-
-        // Users
-        String firstName = "Joe";
-        String lastName = "Wroblewski";
-        emailAddress = "joepwro@gmail.com";
-        String phoneNumber = "6302156979";
-        String mobileCarrierId = "103";
-        Boolean sendEmailNotifications = true;
-        Boolean sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
-
-        firstName = "Nick";
-        lastName = "Wroblewski";
-        emailAddress = "njw438@gmail.com";
-        phoneNumber = "7089458201";
-        mobileCarrierId = "103";
-        sendEmailNotifications = true;
-        sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
-
-        firstName = "Terry";
-        lastName = "Roe";
-        emailAddress = "terryroe@gmail.com";
-        phoneNumber = "5743491522";
-        mobileCarrierId = "103";
-        sendEmailNotifications = true;
-        sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
 
         // Beta Testers
         userName = "joew";
