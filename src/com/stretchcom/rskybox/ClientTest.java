@@ -422,14 +422,18 @@ public class ClientTest {
         String applicationId = verifyCreateApplication(name, version, A_PRIORI_TOKEN);
         if (applicationId.equals("")) { return; }
 
-        // App Member
+        // App Members
         emailAddress = "joepwro@gmail.com";
         String role = "owner";
         String appMemberId = verifyCreateAppMember(applicationId, emailAddress, role, A_PRIORI_TOKEN);
 
-        // App Member update
         String newRole = "owner";
         String newStatus = "active";
+        verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, A_PRIORI_TOKEN);
+
+        emailAddress = "terryroe@gmail.com";
+        role = "owner";
+        appMemberId = verifyCreateAppMember(applicationId, emailAddress, role, A_PRIORI_TOKEN);
         verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, A_PRIORI_TOKEN);
 
         // Feedback
