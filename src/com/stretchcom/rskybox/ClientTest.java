@@ -109,6 +109,15 @@ public class ClientTest {
         //
         //=====================================================================================================================
 
+        // =========================
+        // REQUEST CONFIRMATION CODE
+        // =========================
+        // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
+//        String emailAddress = "joe@stretchcom.com";
+//        String phoneNumber = null;
+//        String mobileCarrierId = null;
+//        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
+
         // ==================
         // CREATE APPLICATION
         // ==================
@@ -284,14 +293,15 @@ public class ClientTest {
         //       cookie sent with Google account info.  Longer, maybe add Google account cookie to the test instead -- if that's passible.
         //
         // PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-        //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken)
-        //String firstName = "Joe";
-        //String lastName = "Wroblewski";
-        //String emailAddress = "joepwro@gmail.com";
-        //String phoneNumber = "6302156979";
-        //String mobileCarrierId = "103";
-        //Boolean sendEmailNotifications = true;
-        //Boolean sendSmsNotifications = true;
+        //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode)
+        String firstName = "Joe";
+        String lastName = "Wroblewski";
+        String emailAddress = "joe@stretchcom.com";
+        String phoneNumber = null;
+        String mobileCarrierId = "103";
+        Boolean sendEmailNotifications = true;
+        Boolean sendSmsNotifications = true;
+        String confirmationCode = "dge";
 
         //String firstName = "Nick";
         //String lastName = "Wroblewski";
@@ -300,6 +310,7 @@ public class ClientTest {
         //String mobileCarrierId = "103";
         //Boolean sendEmailNotifications = true;
         //Boolean sendSmsNotifications = true;
+        //String confirmationCode = "xyz";
 
         //String firstName = "Terry";
         //String lastName = "Roe";
@@ -308,7 +319,8 @@ public class ClientTest {
         //String mobileCarrierId = "103";
         //Boolean sendEmailNotifications = true;
         //Boolean sendSmsNotifications = true;
-        //verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+        //String confirmationCode = "xyz";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
 
         // =================
         // GET LIST OF USERS
@@ -397,7 +409,8 @@ public class ClientTest {
         String mobileCarrierId = "103";
         Boolean sendEmailNotifications = true;
         Boolean sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+        String confirmationCode = "dge";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
 
         firstName = "Nick";
         lastName = "Wroblewski";
@@ -406,7 +419,8 @@ public class ClientTest {
         mobileCarrierId = "103";
         sendEmailNotifications = true;
         sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+        confirmationCode = "dge";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
 
         firstName = "Terry";
         lastName = "Roe";
@@ -415,7 +429,8 @@ public class ClientTest {
         mobileCarrierId = "103";
         sendEmailNotifications = true;
         sendSmsNotifications = true;
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+        confirmationCode = "dge";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
 
         // Application
         String name = "rSkybox by StretchCom";
@@ -462,6 +477,33 @@ public class ClientTest {
         application = "LiveFeed";
         version = "1.1";
         verifyCreateBetaTester(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
+    }
+
+    private static String verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId) {
+        if(isLoggingEnabled) System.out.println("\n\n verifyRequestConfirmationCode() starting .....\n");
+        String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/requestConfirmation";
+        JSONObject json = new JSONObject();
+        String token = "";
+        try {
+            if(theEmailAddress != null) json.put("emailAddress", theEmailAddress);
+            if(thePhoneNumber != null) json.put("phoneNumber", thePhoneNumber);
+            if(theMobileCarrierId != null) json.put("mobileCarrierId", theMobileCarrierId);
+
+            System.out.println(json.toString());
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", null);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            JSONObject jsonReturn = new JSONObject(response);
+            token = jsonReturn.getString("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyRequestConfirmationCode() complete");
+        }
+        return token;
     }
 
     private static String verifyCreateApplication(String theName, String theVersion, String aPrioriToken) {
@@ -936,7 +978,7 @@ public class ClientTest {
     }
 
     private static String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-                Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken) {
+                Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateUser() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI;
         JSONObject json = new JSONObject();
@@ -949,11 +991,12 @@ public class ClientTest {
             if(theMobileCarrierId != null) json.put("mobileCarrierId", theMobileCarrierId);
             if(theSendEmailNotifications != null) json.put("sendEmailNotifications", theSendEmailNotifications);
             if(theSendSmsNotifications != null) json.put("sendSmsNotifications", theSendSmsNotifications);
+            if(theConfirmationCode != null) json.put("confirmationCode", theConfirmationCode);
 
             System.out.println(json.toString());
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", null);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             JSONObject jsonReturn = new JSONObject(response);
         } catch (JSONException e) {
