@@ -113,9 +113,9 @@ public class ClientTest {
         // REQUEST CONFIRMATION CODE
         // =========================
         // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
-//        String emailAddress = "joe@stretchcom.com";
+//        String emailAddress = "gale@stretchcom.com";
 //        String phoneNumber = null;
-//        String mobileCarrierId = null;
+//        String mobileCarrierId = "abc";
 //        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
 
         // ==================
@@ -293,15 +293,16 @@ public class ClientTest {
         //       cookie sent with Google account info.  Longer, maybe add Google account cookie to the test instead -- if that's passible.
         //
         // PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-        //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode)
-        String firstName = "Joe";
+        //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode, String thePassword)
+        String firstName = "Gale";
         String lastName = "Wroblewski";
-        String emailAddress = "joe@stretchcom.com";
+        String emailAddress = "gale@stretchcom.com";
         String phoneNumber = null;
         String mobileCarrierId = "103";
         Boolean sendEmailNotifications = true;
         Boolean sendSmsNotifications = true;
-        String confirmationCode = "dge";
+        String confirmationCode = "njp";
+        String password = "happyDays";
 
         //String firstName = "Nick";
         //String lastName = "Wroblewski";
@@ -311,6 +312,7 @@ public class ClientTest {
         //Boolean sendEmailNotifications = true;
         //Boolean sendSmsNotifications = true;
         //String confirmationCode = "xyz";
+        //String password = "happyDays";
 
         //String firstName = "Terry";
         //String lastName = "Roe";
@@ -320,7 +322,8 @@ public class ClientTest {
         //Boolean sendEmailNotifications = true;
         //Boolean sendSmsNotifications = true;
         //String confirmationCode = "xyz";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
+        //String password = "happyDays";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         // =================
         // GET LIST OF USERS
@@ -410,7 +413,8 @@ public class ClientTest {
         Boolean sendEmailNotifications = true;
         Boolean sendSmsNotifications = true;
         String confirmationCode = "dge";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
+        String password = "happyDays";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         firstName = "Nick";
         lastName = "Wroblewski";
@@ -420,7 +424,8 @@ public class ClientTest {
         sendEmailNotifications = true;
         sendSmsNotifications = true;
         confirmationCode = "dge";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
+        password = "happyDays";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         firstName = "Terry";
         lastName = "Roe";
@@ -430,7 +435,8 @@ public class ClientTest {
         sendEmailNotifications = true;
         sendSmsNotifications = true;
         confirmationCode = "dge";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode);
+        password = "happyDays";
+        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         // Application
         String name = "rSkybox by StretchCom";
@@ -495,7 +501,6 @@ public class ClientTest {
             String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", null);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             JSONObject jsonReturn = new JSONObject(response);
-            token = jsonReturn.getString("id");
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -978,7 +983,7 @@ public class ClientTest {
     }
 
     private static String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
-                Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode) {
+                Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode, String thePassword) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateUser() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI;
         JSONObject json = new JSONObject();
@@ -992,6 +997,7 @@ public class ClientTest {
             if(theSendEmailNotifications != null) json.put("sendEmailNotifications", theSendEmailNotifications);
             if(theSendSmsNotifications != null) json.put("sendSmsNotifications", theSendSmsNotifications);
             if(theConfirmationCode != null) json.put("confirmationCode", theConfirmationCode);
+            if(thePassword != null) json.put("password", thePassword);
 
             System.out.println(json.toString());
 
