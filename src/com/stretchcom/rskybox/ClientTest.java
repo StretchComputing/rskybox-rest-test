@@ -106,17 +106,8 @@ public class ClientTest {
         //=====================================================================================================================
         // DEVELOPMENT SERVER(Localhost:8888) ==> Entity Keys
         //=====================================================================================================================
-        //
+        String token1 = "orc9c1gvmivtm98upjicqvn8qa";
         //=====================================================================================================================
-
-        // =========================
-        // REQUEST CONFIRMATION CODE
-        // =========================
-        // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
-//        String emailAddress = "gale@stretchcom.com";
-//        String phoneNumber = null;
-//        String mobileCarrierId = "abc";
-//        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
 
         // ==================
         // CREATE APPLICATION
@@ -284,6 +275,15 @@ public class ClientTest {
         //verifyUpdateClientLog(applicationId, theClientLogId, "archived", A_PRIORI_TOKEN);
         //verifyUpdateClientLog(applicationId, "bad_id", "new", A_PRIORI_TOKEN);
 
+        // =========================
+        // REQUEST CONFIRMATION CODE
+        // =========================
+        // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
+//        String emailAddress = "gale@stretchcom.com";
+//        String phoneNumber = null;
+//        String mobileCarrierId = "abc";
+//        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
+
         // ============
         // CRTEATE USER
         // ============
@@ -294,15 +294,15 @@ public class ClientTest {
         //
         // PARAMS:: String verifyCreateUser(String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber, String theMobileCarrierId,
         //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode, String thePassword)
-        String firstName = "Gale";
-        String lastName = "Wroblewski";
-        String emailAddress = "gale@stretchcom.com";
-        String phoneNumber = null;
-        String mobileCarrierId = "103";
-        Boolean sendEmailNotifications = true;
-        Boolean sendSmsNotifications = true;
-        String confirmationCode = "njp";
-        String password = "happyDays";
+//        String firstName = "Gale";
+//        String lastName = "Wroblewski";
+//        String emailAddress = "gale@stretchcom.com";
+//        String phoneNumber = null;
+//        String mobileCarrierId = "103";
+//        Boolean sendEmailNotifications = true;
+//        Boolean sendSmsNotifications = true;
+//        String confirmationCode = "ci8";
+//        String password = "happyDays";
 
         //String firstName = "Nick";
         //String lastName = "Wroblewski";
@@ -323,7 +323,7 @@ public class ClientTest {
         //Boolean sendSmsNotifications = true;
         //String confirmationCode = "xyz";
         //String password = "happyDays";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
+//        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         // =================
         // GET LIST OF USERS
@@ -331,12 +331,35 @@ public class ClientTest {
         // PARAMS:: verifyGetListOfUsers(String aPrioriToken)
         //verifyGetListOfUsers(A_PRIORI_TOKEN);
 
+        // ==============
+        // GET USER TOKEN
+        // ==============
+        // PARAMS:: verifyGetUserToken(String theUserName, String thePassword)
+//        String userName = "gale@stretchcom.com";
+//        String password = "happyDays";
+//        verifyGetUserToken(userName, password);
+
         // =============
         // GET USER INFO
         // =============
         // PARAMS:: verifyGetUserInfo(String theUserId, String aPrioriToken)
         //verifyGetUserInfo(theUserId, A_PRIORI_TOKEN);
         //verifyGetUserInfo("current", A_PRIORI_TOKEN); // get info for "current" user
+
+        // ============
+        // CONFIRM USER
+        // ============
+        // PARAMS:: verifyConfirmUser(String theConfirmationCode, String theEmailAddress, String thePhoneNumber)
+//        String confirmationCode = "dge";
+//        String emailAddress = "joe@stretchcom.com";
+//        String phoneNumber = null;
+//        verifyConfirmUser(confirmationCode, emailAddress, phoneNumber);
+
+        // ============
+        // CLEAR COOKIE
+        // ============
+        // PARAMS:: verifyClearCookie(String theToken)
+        verifyClearCookie(token1);
 
         // ===========
         // UPDATE USER
@@ -1032,6 +1055,32 @@ public class ClientTest {
         }
     }
 
+    private static void verifyGetUserToken(String theUserName, String thePassword) {
+        System.out.println("\n\n verifyGetUserToken() starting .....\n");
+        String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/token";
+        urlStr = urlStr + "?" + "fakeFirstParam=none";
+        if(theUserName != null) {
+            String encodedUserName = ClientTest.encode(theUserName);
+            urlStr = urlStr + "&" + "userName=" + encodedUserName;
+        }
+        if(thePassword != null) {
+            String encodedPassword = ClientTest.encode(thePassword);
+            urlStr = urlStr + "&" + "password=" + encodedPassword;
+        }
+        System.out.println("urlStr = " + urlStr + "\n");
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", null);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyGetUserToken() complete\n");
+        }
+    }
+
     private static void verifyGetUserInfo(String theUserId, String aPrioriToken) {
         System.out.println("\n\n verifyGetUserInfo() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
@@ -1046,6 +1095,48 @@ public class ClientTest {
             e.printStackTrace();
         } finally {
             System.out.println("verifyGetUserInfo() complete\n");
+        }
+    }
+
+    private static void verifyConfirmUser(String theConfirmationCode, String theEmailAddress, String thePhoneNumber) {
+        System.out.println("\n\n verifyConfirmUser() starting .....\n");
+        String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/confirm";
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+
+        try {
+            if(theConfirmationCode !=null) json.put("confirmationCode", theConfirmationCode);
+            if(theEmailAddress !=null) json.put("emailAddress", theEmailAddress);
+            if(thePhoneNumber !=null) json.put("phoneNumber", thePhoneNumber);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", null);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyConfirmUser() complete\n");
+        }
+    }
+
+    private static void verifyClearCookie(String theToken) {
+        System.out.println("\n\n verifyClearCookie() starting .....\n");
+        String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/clearCookie";
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyClearCookie() complete\n");
         }
     }
 
