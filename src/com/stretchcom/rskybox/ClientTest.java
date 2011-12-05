@@ -282,6 +282,10 @@ public class ClientTest {
 //        String emailAddress = "gale@stretchcom.com";
 //        String phoneNumber = null;
 //        String mobileCarrierId = "abc";
+        // --- OR ---
+//        String emailAddress = null;
+//        String phoneNumber = "7084204130";
+//        String mobileCarrierId = "103";
 //        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
 
         // ============
@@ -296,12 +300,12 @@ public class ClientTest {
         //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode, String thePassword)
 //        String firstName = "Gale";
 //        String lastName = "Wroblewski";
-//        String emailAddress = "gale@stretchcom.com";
-//        String phoneNumber = null;
+//        String emailAddress = null;
+//        String phoneNumber = "7084204130";
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
-//        String confirmationCode = "ci8";
+//        String confirmationCode = "g24";
 //        String password = "happyDays";
 
         //String firstName = "Nick";
@@ -335,7 +339,7 @@ public class ClientTest {
         // GET USER TOKEN
         // ==============
         // PARAMS:: verifyGetUserToken(String theUserName, String thePassword)
-//        String userName = "gale@stretchcom.com";
+//        String userName = "7084204130";
 //        String password = "happyDays";
 //        verifyGetUserToken(userName, password);
 
@@ -359,7 +363,9 @@ public class ClientTest {
         // CLEAR COOKIE
         // ============
         // PARAMS:: verifyClearCookie(String theToken)
-        verifyClearCookie(token1);
+//        verifyClearCookie(token1);
+//        verifyClearCookie("83bad96vb78ntuo2dr7qime36");
+      verifyClearCookie("badtoken");
 
         // ===========
         // UPDATE USER
