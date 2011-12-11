@@ -280,8 +280,8 @@ public class ClientTest {
         // =========================
         // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
 //        String emailAddress = "gale@stretchcom.com";
-//        String phoneNumber = null;
-//        String mobileCarrierId = "abc";
+//        String phoneNumber = "7084204130";
+//        String mobileCarrierId = "103";
         // --- OR ---
 //        String emailAddress = null;
 //        String phoneNumber = "7084204130";
@@ -300,12 +300,12 @@ public class ClientTest {
         //                                  Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theConfirmationCode, String thePassword)
 //        String firstName = "Gale";
 //        String lastName = "Wroblewski";
-//        String emailAddress = null;
-//        String phoneNumber = "7084204130";
+//        String emailAddress = "gale@stretchcom.com";
+//        String phoneNumber = null;
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
-//        String confirmationCode = "g24";
+//        String confirmationCode = "b8o";
 //        String password = "happyDays";
 
         //String firstName = "Nick";
@@ -339,9 +339,9 @@ public class ClientTest {
         // GET USER TOKEN
         // ==============
         // PARAMS:: verifyGetUserToken(String theUserName, String thePassword)
-//        String userName = "7084204130";
-//        String password = "happyDays";
-//        verifyGetUserToken(userName, password);
+        String userName = "gale@stretchcom.com";
+        String password = "happyDays";
+        verifyGetUserToken(userName, password);
 
         // =============
         // GET USER INFO
@@ -354,9 +354,9 @@ public class ClientTest {
         // CONFIRM USER
         // ============
         // PARAMS:: verifyConfirmUser(String theConfirmationCode, String theEmailAddress, String thePhoneNumber)
-//        String confirmationCode = "dge";
-//        String emailAddress = "joe@stretchcom.com";
-//        String phoneNumber = null;
+//        String confirmationCode = "g2c";
+//        String emailAddress = null;
+//        String phoneNumber = "7084204130";
 //        verifyConfirmUser(confirmationCode, emailAddress, phoneNumber);
 
         // ============
@@ -365,7 +365,7 @@ public class ClientTest {
         // PARAMS:: verifyClearCookie(String theToken)
 //        verifyClearCookie(token1);
 //        verifyClearCookie("83bad96vb78ntuo2dr7qime36");
-      verifyClearCookie("badtoken");
+//      verifyClearCookie("badtoken");
 
         // ===========
         // UPDATE USER
