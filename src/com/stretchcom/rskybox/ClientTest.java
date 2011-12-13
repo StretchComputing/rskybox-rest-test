@@ -31,7 +31,7 @@ public class ClientTest {
     private static final String CLIENT_LOG_RESOURCE_URI = "clientLogs";
     private static final String USER_RESOURCE_URI = "users";
     private static final String MOBILE_CARRIER_RESOURCE_URI = "mobileCarriers";
-    private static final String BETA_TESTER_RESOURCE_URI = "betaTesters";
+    private static final String END_USER_RESOURCE_URI = "endUsers";
 
     private static int totalAssertCount = 0;
     private static int passingAssertCount = 0;
@@ -65,7 +65,7 @@ public class ClientTest {
         //String theFeedbackId = "";
         //String theCrashDetectId = "";
         //String theClientLogId = "";
-        //String theBetaTesterId = "";
+        //String theEndUserId = "";
 
         // rskybox-stretchcom.appspot.com values
         //String applicationId = "ahRzfnJza3lib3gtc3RyZXRjaGNvbXISCxILQXBwbGljYXRpb24Y6QcM";
@@ -74,7 +74,7 @@ public class ClientTest {
         //String theFeedbackId = "";
         //String theCrashDetectId = "";
         //String theClientLogId = "";
-        //String theBetaTesterId = "";
+        //String theEndUserId = "";
 
         // Joe's original values
         //String applicationId = "agxtb2JpbGUtcHVsc2VyEQsSC0FwcGxpY2F0aW9uGCcM";
@@ -83,7 +83,7 @@ public class ClientTest {
         //String theFeedbackId = "agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGC4M";
         //String theCrashDetectId = "agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GC8M";
         //String theClientLogId = "agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHww";
-        //String theBetaTesterId = "agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHww";
+        //String theEndUserId = "agxtb2JpbGUtcHVsc2VyCgsSBFVzZXIYHww";
 
         // Terry's values
         //String applicationId = "agxtb2JpbGUtcHVsc2VyEQsSC0FwcGxpY2F0aW9uGAYM";
@@ -92,7 +92,7 @@ public class ClientTest {
         //String theFeedbackId = "agxtb2JpbGUtcHVsc2VyDgsSCEZlZWRiYWNrGAkM";
         //String theCrashDetectId = "agxtb2JpbGUtcHVsc2VyEQsSC0NyYXNoRGV0ZWN0GAoM";
         //String theClientLogId = "agxtb2JpbGUtcHVsc2VyDwsSCUNsaWVudExvZxgLDA";
-        //String theBetaTesterId = "agxtb2JpbGUtcHVsc2VyEAsSCkJldGFUZXN0ZXIYDAw";
+        //String theEndUserId = "agxtb2JpbGUtcHVsc2VyEAsSCkJldGFUZXN0ZXIYDAw";
 
         //=====================================================================================================================
         //=====================================================================================================================
@@ -113,6 +113,7 @@ public class ClientTest {
         String crashDetectId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0NyYXNoRGV0ZWN0GCAM";
         String feedbackId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDgsSCEZlZWRiYWNrGCEM";
         String clientLogId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUNsaWVudExvZxgiDA";
+        String endUserId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDQsSB0VuZFVzZXIYIww";
         //=====================================================================================================================
 
         // ==================
@@ -132,7 +133,7 @@ public class ClientTest {
         // ====================
         // GET APPLICATION INFO
         // ====================
-        // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String aPrioriToken)
+        // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String theUserToken)
         //verifyGetApplicationInfo(applicationId, A_PRIORI_TOKEN);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGBkM", token1);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGBkM", token2);
@@ -146,7 +147,7 @@ public class ClientTest {
         // =================
         // CREATE APP MEMBER
         // =================
-        // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String aPrioriToken)
+        // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
         //String emailAddress = "joepwro@gmail.com";
         //String version = "owner";
         //verifyCreateAppMember(applicationId, emailAddress, version, A_PRIORI_TOKEN);
@@ -154,19 +155,19 @@ public class ClientTest {
         // ======================
         // GET LIST OF APP MEMBER
         // ======================
-        // PARAMS:: verifyGetListOfAppMembers(String theApplicationId, String aPrioriToken)
+        // PARAMS:: verifyGetListOfAppMembers(String theApplicationId, String theUserToken)
         //verifyGetListOfAppMembers(applicationId, A_PRIORI_TOKEN);
 
         // ===================
         // GET APP MEMBER INFO
         // ===================
-        // PARAMS:: verifyGetAppMemberInfo(String theApplicationId, String theAppMemberId, String aPrioriToken)
+        // PARAMS:: verifyGetAppMemberInfo(String theApplicationId, String theAppMemberId, String theUserToken)
         //verifyGetAppMemberInfo(applicationId, appMemberId, A_PRIORI_TOKEN);
 
         // =================
         // UPDATE APP MEMBER
         // =================
-        // PARAMS:: verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String aPrioriToken)
+        // PARAMS:: verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String theUserToken)
         //String newRole = "owner";
         //String newStatus = "active";
         //verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, A_PRIORI_TOKEN);
@@ -344,7 +345,7 @@ public class ClientTest {
         // =================
         // GET LIST OF USERS
         // =================
-        // PARAMS:: verifyGetListOfUsers(String aPrioriToken)
+        // PARAMS:: verifyGetListOfUsers(String theUserToken)
         //verifyGetListOfUsers(A_PRIORI_TOKEN);
 
         // ==============
@@ -358,7 +359,7 @@ public class ClientTest {
         // =============
         // GET USER INFO
         // =============
-        // PARAMS:: verifyGetUserInfo(String theUserId, String aPrioriToken)
+        // PARAMS:: verifyGetUserInfo(String theUserId, String theUserToken)
         //verifyGetUserInfo(theUserId, token2);
         //verifyGetUserInfo("current", A_PRIORI_TOKEN); // get info for "current" user
 
@@ -383,7 +384,7 @@ public class ClientTest {
         // UPDATE USER
         // ===========
         // PARAMS:: verifyUpdateUser(String theUserId, String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber,
-        //                           String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken)
+        //                           String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theUserToken)
         //String firstName = "Issac";
         //String lastName = "Newton";
         //String emailAddress = "joe@example.com";
@@ -396,48 +397,48 @@ public class ClientTest {
         // ===========
         // DELETE USER
         // ===========
-        // PARAMS:: verifyDeleteUser(String theUserId, String aPrioriToken)
+        // PARAMS:: verifyDeleteUser(String theUserId, String theUserToken)
         //verifyDeleteUser(theUserId, A_PRIORI_TOKEN);
 
         // ===========================
         // GET LIST OF MOBILE CARRIERS
         // ===========================
-        // PARAMS:: verifyGetListOfMobileCarriers(String aPrioriToken)
+        // PARAMS:: verifyGetListOfMobileCarriers(String theUserToken)
         //verifyGetListOfMobileCarriers(A_PRIORI_TOKEN);
 
-        // ===================
-        // CRTEATE BETA TESTER
-        // ===================
-        // PARAMS:: String verifyCreateBetaTester(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String aPrioriToken, String aPrioriToken)
+        // ================
+        // CRTEATE END USER
+        // ================
+        // PARAMS:: String verifyCreateEndUser(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String theUserToken, String theUserToken)
         //String userName = "joew";
         //String application = "livefeed";
         //String version = "1.0";
         //String instanceUrl = "fruition18.service-now.com";
 
-        //String userName = "nickw";
-        //String application = "LiveFeed";
-        //String version = "1.1";
-        //String instanceUrl = "fruition18.service-now.com";
-        //verifyCreateBetaTester(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
+//        String userName = "nickw";
+//        String application = "LiveFeed";
+//        String version = "1.1";
+//        String instanceUrl = "fruition18.service-now.com";
+//        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, token1);
 
-        // ========================
-        // GET LIST OF BETA TESTERS
-        // ========================
-        // PARAMS:: verifyGetListOfBetaTesters(String theApplicationId, String aPrioriToken)
-        //verifyGetListOfBetaTesters(applicationId, A_PRIORI_TOKEN);
+        // =====================
+        // GET LIST OF END USERS
+        // =====================
+        // PARAMS:: verifyGetListOfEndUsers(String theApplicationId, String theUserToken)
+        //verifyGetListOfEndUsers(applicationId, token1);
 
-        // ====================
-        // GET BETA TESTER INFO
-        // ====================
-        // PARAMS:: verifyGetBetaTesterInfo(String theApplicationId, String theBetaTesterId, String aPrioriToken)
-        //verifyGetBetaTesterInfo(applicationId, theBetaTesterId, A_PRIORI_TOKEN);
+        // =================
+        // GET END USER INFO
+        // =================
+        // PARAMS:: verifyGetEndUserInfo(String theApplicationId, String theEndUserId, String theUserToken)
+        //verifyGetEndUserInfo(applicationId, endUserId, token1);
 
-        // ==================
-        // UPDATE BETA TESTER
-        // ==================
-        // PARAMS:: verifyUpdateBetaTester(String theApplicationId, String theBetaTesterId, String theVersion, String aPrioriToken)
-        //String version = "2.0";
-        //verifyUpdateBetaTester(applicationId, theBetaTesterId, version, A_PRIORI_TOKEN);
+        // ===============
+        // UPDATE END USER
+        // ===============
+        // PARAMS:: verifyUpdateEndUser(String theApplicationId, String theEndUserId, String theVersion, String theUserToken)
+//        String version = "2.1";
+//        verifyUpdateEndUser(applicationId, endUserId, version, token1);
     }
 
     private static void createTestData() {
@@ -515,15 +516,15 @@ public class ClientTest {
         String stackBackTrace = "method1() method2() method3() methodX()";
         verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, stackBackTrace, A_PRIORI_TOKEN);
 
-        // Beta Testers
+        // End Users
         userName = "joew";
         String application = "livefeed";
-        verifyCreateBetaTester(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
+        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
 
         userName = "nickw";
         application = "LiveFeed";
         version = "1.1";
-        verifyCreateBetaTester(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
+        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, A_PRIORI_TOKEN);
     }
 
     private static String verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId) {
@@ -594,14 +595,14 @@ public class ClientTest {
         }
     }
 
-    private static void verifyGetApplicationInfo(String theApplicationId, String aPrioriToken) {
+    private static void verifyGetApplicationInfo(String theApplicationId, String theUserToken) {
         System.out.println("\n\n verifyGetApplicationInfo() starting .....\n");
         String urlStr = REST_BASE_URL + APPLICATION_RESOURCE_URI + "/" + theApplicationId;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -634,7 +635,7 @@ public class ClientTest {
     }
 
     @SuppressWarnings("unused")
-    private static String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String aPrioriToken) {
+    private static String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateAppMember() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + APP_MEMBER_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
@@ -648,7 +649,7 @@ public class ClientTest {
             System.out.println(json.toString());
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             JSONObject jsonReturn = new JSONObject(response);
             token = jsonReturn.getString("id");
@@ -663,14 +664,14 @@ public class ClientTest {
     }
 
 
-    private static void verifyGetListOfAppMembers(String theApplicationId, String aPrioriToken) {
+    private static void verifyGetListOfAppMembers(String theApplicationId, String theUserToken) {
         System.out.println("\n\n verifyGetListOfAppMembers() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + APP_MEMBER_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -681,14 +682,14 @@ public class ClientTest {
     }
 
 
-    private static void verifyGetAppMemberInfo(String theApplicationId, String theAppMemberId, String aPrioriToken) {
+    private static void verifyGetAppMemberInfo(String theApplicationId, String theAppMemberId, String theUserToken) {
         System.out.println("\n\n verifyGetAppMemberInfo() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + APP_MEMBER_RESOURCE_URI + "/" + theAppMemberId;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -698,7 +699,7 @@ public class ClientTest {
         }
     }
 
-    private static void verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String aPrioriToken) {
+    private static void verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String theUserToken) {
         System.out.println("\n\n verifyUpdateAppMember() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + APP_MEMBER_RESOURCE_URI + "/" + theAppMemberId;
         System.out.println("urlStr = " + urlStr + "\n");
@@ -709,7 +710,7 @@ public class ClientTest {
             json.put("status", theNewStatus);
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (JSONException e) {
@@ -1055,14 +1056,14 @@ public class ClientTest {
         return token;
     }
 
-    private static void verifyGetListOfUsers(String aPrioriToken) {
+    private static void verifyGetListOfUsers(String theUserToken) {
         System.out.println("\n\n verifyGetListOfUsers() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -1098,14 +1099,14 @@ public class ClientTest {
         }
     }
 
-    private static void verifyGetUserInfo(String theUserId, String aPrioriToken) {
+    private static void verifyGetUserInfo(String theUserId, String theUserToken) {
         System.out.println("\n\n verifyGetUserInfo() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -1158,7 +1159,7 @@ public class ClientTest {
     }
 
     private static void verifyUpdateUser(String theUserId, String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber,
-                                         String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String aPrioriToken) {
+                                         String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theUserToken) {
         System.out.println("\n\n verifyUpdateUser() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
         System.out.println("urlStr = " + urlStr + "\n");
@@ -1174,7 +1175,7 @@ public class ClientTest {
             if(theSendSmsNotifications !=null) json.put("sendSmsNotifications", theSendSmsNotifications);
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (JSONException e) {
@@ -1186,14 +1187,14 @@ public class ClientTest {
         }
     }
 
-    private static void verifyDeleteUser(String theUserId, String aPrioriToken) {
+    private static void verifyDeleteUser(String theUserId, String theUserToken) {
         System.out.println("\n\n verifyDeleteUser() starting .....\n");
         String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/" + theUserId;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_DELETE, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_DELETE, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -1203,14 +1204,14 @@ public class ClientTest {
         }
     }
 
-    private static void verifyGetListOfMobileCarriers(String aPrioriToken) {
+    private static void verifyGetListOfMobileCarriers(String theUserToken) {
         System.out.println("\n\n verifyGetListOfMobileCarriers() starting .....\n");
         String urlStr = REST_BASE_URL + MOBILE_CARRIER_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
@@ -1220,9 +1221,9 @@ public class ClientTest {
         }
     }
 
-    private static String verifyCreateBetaTester(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String aPrioriToken) {
-        if(isLoggingEnabled) System.out.println("\n\n verifyCreateBetaTester() starting .....\n");
-        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + BETA_TESTER_RESOURCE_URI;
+    private static String verifyCreateEndUser(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String theUserToken) {
+        if(isLoggingEnabled) System.out.println("\n\n verifyCreateEndUser() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI;
         JSONObject json = new JSONObject();
         String token = "";
         try {
@@ -1234,7 +1235,7 @@ public class ClientTest {
             System.out.println(json.toString());
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             JSONObject jsonReturn = new JSONObject(response);
         } catch (JSONException e) {
@@ -1242,48 +1243,48 @@ public class ClientTest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("verifyCreateBetaTester() complete");
+            System.out.println("verifyCreateEndUser() complete");
         }
         return token;
     }
 
-    private static void verifyGetListOfBetaTesters(String theApplicationId, String aPrioriToken) {
-        System.out.println("\n\n verifyGetListOfBetaTesters() starting .....\n");
-        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + BETA_TESTER_RESOURCE_URI;
+    private static void verifyGetListOfEndUsers(String theApplicationId, String theUserToken) {
+        System.out.println("\n\n verifyGetListOfEndUsers() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("verifyGetListOfBetaTesters() complete\n");
+            System.out.println("verifyGetListOfEndUsers() complete\n");
         }
     }
 
-    private static void verifyGetBetaTesterInfo(String theApplicationId, String theBetaTesterId, String aPrioriToken) {
-        System.out.println("\n\n verifyGetBetaTesterInfo() starting .....\n");
-        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + BETA_TESTER_RESOURCE_URI + "/" + theBetaTesterId;
+    private static void verifyGetEndUserInfo(String theApplicationId, String theEndUserId, String theUserToken) {
+        System.out.println("\n\n verifyGetEndUserInfo() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI + "/" + theEndUserId;
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("verifyGetBetaTesterInfo() complete\n");
+            System.out.println("verifyGetEndUserInfo() complete\n");
         }
     }
 
-    private static void verifyUpdateBetaTester(String theApplicationId, String theBetaTesterId, String theVersion, String aPrioriToken) {
-        System.out.println("\n\n verifyUpdateBetaTester() starting .....\n");
-        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + BETA_TESTER_RESOURCE_URI + "/" + theBetaTesterId;
+    private static void verifyUpdateEndUser(String theApplicationId, String theEndUserId, String theVersion, String theUserToken) {
+        System.out.println("\n\n verifyUpdateEndUser() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI + "/" + theEndUserId;
         System.out.println("urlStr = " + urlStr + "\n");
         JSONObject json = new JSONObject();
 
@@ -1291,7 +1292,7 @@ public class ClientTest {
             if(theVersion !=null) json.put("version", theVersion);
 
             URL url = new URL(urlStr);
-            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", aPrioriToken);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
             if(isLoggingEnabled) System.out.println("repStr = " + response);
             System.out.println("\n");
         } catch (JSONException e) {
@@ -1299,7 +1300,7 @@ public class ClientTest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("verifyUpdateBetaTester() complete\n");
+            System.out.println("verifyUpdateEndUser() complete\n");
         }
     }
 
