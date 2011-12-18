@@ -149,7 +149,7 @@ public class ClientTest {
         // CREATE APP MEMBER
         // =================
         // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
-//        String emailAddress = "terryroe@gmail.com";
+//        String emailAddress = "gale@stretchcom.com";
 //        String version = "manager";
 //        verifyCreateAppMember(applicationId, emailAddress, version, token1);
 
@@ -157,8 +157,8 @@ public class ClientTest {
         // CONFIRM APP MEMBER
         // =================
         // PARAMS:: String verifyConfirmAppMember(String theApplicationId, String theEmailAddress, String theConfirmationCode)
-//        String emailAddress = "terryroe@gmail.com";
-//        String confirmationCode = "abj";
+//        String emailAddress = "gale@stretchcom.com";
+//        String confirmationCode = "53l";
 //        verifyConfirmAppMember(applicationId, emailAddress, confirmationCode);
 
         // ======================
@@ -300,7 +300,7 @@ public class ClientTest {
         // REQUEST CONFIRMATION CODE
         // =========================
         // PARAMS:: verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId)
-//        String emailAddress = "terryroe@gmail.com";
+//        String emailAddress = "terryroe2@gmail.com";
 //        String phoneNumber = "7084204130";
 //        String mobileCarrierId = "103";
         // --- OR ---
@@ -329,7 +329,7 @@ public class ClientTest {
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
-//        String confirmationCode = "b8o";
+//        String confirmationCode = "53l";
 //        String password = "happyDays";
 
 //        String firstName = "Joe";
@@ -342,16 +342,16 @@ public class ClientTest {
 //        String confirmationCode = "k95";
 //        String password = "uto123";
 
-        String firstName = "Terry";
-        String lastName = "Roe";
-        String emailAddress = "terryroe@gmail.com";
-        String phoneNumber = null;
-        String mobileCarrierId = "103";
-        Boolean sendEmailNotifications = true;
-        Boolean sendSmsNotifications = true;
-        String confirmationCode = "7tv";
-        String password = "happyDays";
-        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
+//        String firstName = "Terry";
+//        String lastName = "Roe";
+//        String emailAddress = "terryroe@gmail.com";
+//        String phoneNumber = null;
+//        String mobileCarrierId = "103";
+//        Boolean sendEmailNotifications = true;
+//        Boolean sendSmsNotifications = true;
+//        String confirmationCode = "7tv";
+//        String password = "happyDays";
+//        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
         // =================
         // GET LIST OF USERS
