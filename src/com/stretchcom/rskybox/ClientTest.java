@@ -9,7 +9,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.appengine.repackaged.com.google.common.util.Base64;
@@ -266,13 +269,24 @@ public class ClientTest {
         // ==================
         // CREATE CLIENT LOG
         // ==================
-        // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace, String theUserToken)
-//        String userName = "BigJoeUpdated";
-//        String instanceUrl = "http://fruition18.service-now.com/";
-//        String logLevel = "error";
-//        String message = "learning to love country music";
-//        String stackBackTrace = "method1() method2() method3() methodX()";
-//        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, stackBackTrace, token1);
+        // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
+        //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations
+        //                                       String theStackBackTrace, String theUserToken)
+        String userName = "NewJoeTest";
+        String instanceUrl = "http://stretchcom.com/";
+        String logLevel = "error";
+        String message = "learning to love country music";
+        String stackBackTrace = "method1() method2() method3() methodX()";
+		List<String> appDescriptions = new ArrayList<String>();
+		appDescriptions.add("first user action");
+		appDescriptions.add("second user action");
+		List<String> appTimestamps = new ArrayList<String>();
+		appTimestamps.add("2011-10-17 05:55");
+		appTimestamps.add("2011-10-17 05:55");
+		List<String> appDurations = new ArrayList<String>();
+		appDurations.add("22");
+		appDurations.add("19");
+        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
 
         // =======================
         // GET LIST OF CLIENT LOGS
@@ -546,7 +560,16 @@ public class ClientTest {
         String logLevel = "error";
         String message = "learning to love country music";
         String stackBackTrace = "method1() method2() method3() methodX()";
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, stackBackTrace, appToken);
+		List<String> appDescriptions = new ArrayList<String>();
+		appDescriptions.add("first user action");
+		appDescriptions.add("second user action");
+		List<String> appTimestamps = new ArrayList<String>();
+		appTimestamps.add("2011-10-17 05:55");
+		appTimestamps.add("2011-10-17 05:55");
+		List<String> appDurations = new ArrayList<String>();
+		appDurations.add("22");
+		appDurations.add("19");
+        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, appToken);
 
         // End Users
         userName = "joew";
@@ -985,7 +1008,8 @@ public class ClientTest {
         }
     }
 
-    private static JSONObject verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage, String theStackBackTrace, String theUserToken) {
+    private static JSONObject verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
+    		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, String theStackBackTrace, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CLIENT_LOG_RESOURCE_URI;
         JSONObject json = new JSONObject();
@@ -995,6 +1019,20 @@ public class ClientTest {
             if(theLogLevel != null) json.put("logLevel", theLogLevel);
             if(theMessage != null) json.put("message", theMessage);
             if(theStackBackTrace != null) json.put("stackBackTrace", theStackBackTrace);
+			
+			if(appActionDescriptions != null) {
+				JSONArray appMemberJsonArray = new JSONArray();
+				int index = 0;
+				for(String desc : appActionDescriptions) {
+					JSONObject appMemberJsonObj = new JSONObject();
+					appMemberJsonObj.put("description", desc);
+					if(appActionTimestamps != null) appMemberJsonObj.put("timestamp", appActionTimestamps.get(index));
+					if(appActionDurations != null) appMemberJsonObj.put("duration", appActionDurations.get(index));
+					index++;
+					appMemberJsonArray.put(appMemberJsonObj);
+				}
+				if(appMemberJsonArray.length() > 0) json.put("appActions", appMemberJsonArray);
+			}
 
             System.out.println(json.toString());
 
