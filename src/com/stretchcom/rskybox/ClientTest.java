@@ -12,10 +12,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.google.appengine.repackaged.com.google.common.util.Base64;
 
 public class ClientTest {
 
@@ -59,7 +59,7 @@ public class ClientTest {
         // =================================
         // = Create a new set of test data =
         // =================================
-        //createTestData();
+        createTestData();
 
         // Variables for GAE keys.  Replace with your own values.
         //String applicationId = "";
@@ -272,21 +272,21 @@ public class ClientTest {
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations
         //                                       String theStackBackTrace, String theUserToken)
-        String userName = "NewJoeTest";
-        String instanceUrl = "http://stretchcom.com/";
-        String logLevel = "error";
-        String message = "learning to love country music";
-        String stackBackTrace = "method1() method2() method3() methodX()";
-		List<String> appDescriptions = new ArrayList<String>();
-		appDescriptions.add("first user action");
-		appDescriptions.add("second user action");
-		List<String> appTimestamps = new ArrayList<String>();
-		appTimestamps.add("2011-10-17 05:55");
-		appTimestamps.add("2011-10-17 05:55");
-		List<String> appDurations = new ArrayList<String>();
-		appDurations.add("22");
-		appDurations.add("19");
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
+//        String userName = "NewJoeTest";
+//        String instanceUrl = "http://stretchcom.com/";
+//        String logLevel = "error";
+//        String message = "learning to love country music";
+//        String stackBackTrace = "method1() method2() method3() methodX()";
+//		List<String> appDescriptions = new ArrayList<String>();
+//		appDescriptions.add("first user action");
+//		appDescriptions.add("second user action");
+//		List<String> appTimestamps = new ArrayList<String>();
+//		appTimestamps.add("2011-10-17 05:55");
+//		appTimestamps.add("2011-10-17 05:55");
+//		List<String> appDurations = new ArrayList<String>();
+//		appDurations.add("22");
+//		appDurations.add("19");
+//        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
 
         // =======================
         // GET LIST OF CLIENT LOGS
@@ -1432,7 +1432,7 @@ public class ClientTest {
                     System.out.println("base64 encoding failed: " + uee.getMessage());
                 }
 
-                String header = "Basic " + Base64.encode(bytes);
+                String header = "Basic " + Base64.encodeBase64String(bytes);
                 //String header = "";
                 connection.setRequestProperty("Authorization", header);
             }
