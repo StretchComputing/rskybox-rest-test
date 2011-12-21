@@ -281,8 +281,8 @@ public class ClientTest {
 //		appDescriptions.add("first user action");
 //		appDescriptions.add("second user action");
 //		List<String> appTimestamps = new ArrayList<String>();
-//		appTimestamps.add("2011-10-17 05:55");
-//		appTimestamps.add("2011-10-17 05:55");
+//		appTimestamps.add("2011-10-17 05:55:00.001");
+//		appTimestamps.add("2011-10-17 05:55:01.002");
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
@@ -564,8 +564,8 @@ public class ClientTest {
 		appDescriptions.add("first user action");
 		appDescriptions.add("second user action");
 		List<String> appTimestamps = new ArrayList<String>();
-		appTimestamps.add("2011-10-17 05:55");
-		appTimestamps.add("2011-10-17 05:55");
+		appTimestamps.add("2011-10-17 05:55:00.001");
+		appTimestamps.add("2011-10-17 05:55:01.002");
 		List<String> appDurations = new ArrayList<String>();
 		appDurations.add("22");
 		appDurations.add("19");
