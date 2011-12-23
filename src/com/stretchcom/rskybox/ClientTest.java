@@ -152,7 +152,7 @@ public class ClientTest {
         // CREATE APP MEMBER
         // =================
         // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
-//        String emailAddress = "gale@stretchcom.com";
+//        String emailAddress = "joe@rteam.com";
 //        String version = "manager";
 //        verifyCreateAppMember(applicationId, emailAddress, version, token1);
 
@@ -160,8 +160,8 @@ public class ClientTest {
         // CONFIRM APP MEMBER
         // =================
         // PARAMS:: String verifyConfirmAppMember(String theApplicationId, String theEmailAddress, String theConfirmationCode)
-//        String emailAddress = "gale@stretchcom.com";
-//        String confirmationCode = "53l";
+//        String emailAddress = "joe@rteam.com";
+//        String confirmationCode = "123";
 //        verifyConfirmAppMember(applicationId, emailAddress, confirmationCode);
 
         // ======================
@@ -230,13 +230,23 @@ public class ClientTest {
         // CREATE CRASH DETECT
         // ===================
         // PARAMS:: String verifyCreateCrashDetect(String theApplicationId, String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl,
+        //                                         List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
         //                                         String theCrashStackData, String theUserToken)
 //        String summary = "Hero-- this record has REAL base64 encoded crash stack data";
 //        String detectedDate = "2011-12-11 23:12";
 //        String userName = "aEinstein";
 //        String instanceUrl = "http://fruition18.service-now.com/";
 //        String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
-//        verifyCreateCrashDetect(applicationId, summary, userName, detectedDate, instanceUrl, crashStackDataBase64, applicationToken);
+//		List<String> appDescriptions = new ArrayList<String>();
+//		appDescriptions.add("first user action");
+//		appDescriptions.add("second user action");
+//		List<String> appTimestamps = new ArrayList<String>();
+//		appTimestamps.add("2011-10-17 05:55:21.123");
+//		appTimestamps.add("2011-10-17 05:55:22.321");
+//		List<String> appDurations = new ArrayList<String>();
+//		appDurations.add("22");
+//		appDurations.add("19");
+//        verifyCreateCrashDetect(applicationId, summary, userName, detectedDate, instanceUrl, appDescriptions, appTimestamps, appDurations, crashStackDataBase64, applicationToken);
 
         // =========================
         // GET LIST OF CRASH DETECTS
@@ -252,6 +262,7 @@ public class ClientTest {
         // =====================
         // PARAMS:: verifyGetCrashDetectInfo(String theApplicationId, String theCrashDetectId, String theUserToken)
         //verifyGetCrashDetectInfo(applicationId, crashDetectId, token1);
+        //verifyGetCrashDetectInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0NyYXNoRGV0ZWN0GDwM", token1);
 
         // ===================
         // UPDATE CRASH DETECT
@@ -270,23 +281,23 @@ public class ClientTest {
         // CREATE CLIENT LOG
         // ==================
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
-        //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations
+        //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
         //                                       String theStackBackTrace, String theUserToken)
-        String userName = "NewJoeTest";
-        String instanceUrl = "http://stretchcom.com/";
-        String logLevel = "error";
-        String message = "learning to love country music";
-        String stackBackTrace = "method1() method2() method3() methodX()";
-		List<String> appDescriptions = new ArrayList<String>();
-		appDescriptions.add("first user action");
-		appDescriptions.add("second user action");
-		List<String> appTimestamps = new ArrayList<String>();
-		appTimestamps.add("2011-10-17 05:55");
-		appTimestamps.add("2011-10-17 05:55");
-		List<String> appDurations = new ArrayList<String>();
-		appDurations.add("22");
-		appDurations.add("19");
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
+//        String userName = "TestMicroSeconds1";
+//        String instanceUrl = "http://stretchcom.com/";
+//        String logLevel = "error";
+//        String message = "learning to love country music";
+//        String stackBackTrace = "method1() method2() method3() methodX()";
+//		List<String> appDescriptions = new ArrayList<String>();
+//		appDescriptions.add("first user action");
+//		appDescriptions.add("second user action");
+//		List<String> appTimestamps = new ArrayList<String>();
+//		appTimestamps.add("2011-10-17 05:55:21.123");
+//		appTimestamps.add("2011-10-17 05:55:22.321");
+//		List<String> appDurations = new ArrayList<String>();
+//		appDurations.add("22");
+//		appDurations.add("19");
+//        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
 
         // =======================
         // GET LIST OF CLIENT LOGS
@@ -302,6 +313,7 @@ public class ClientTest {
         // ===================
         // PARAMS:: verifyGetClientLogsInfo(String theApplicationId, String theClientLogId, String theUserToken)
         //verifyGetClientLogsInfo(applicationId, clientLogId, token1);
+        //verifyGetClientLogsInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUNsaWVudExvZxg4DA", token1);
 
         // =================
         // UPDATE CLIENT LOG
@@ -348,12 +360,12 @@ public class ClientTest {
 
 //        String firstName = "Joe";
 //        String lastName = "Wroblewski";
-//        String emailAddress = "joe@stretchcom.com";
+//        String emailAddress = "joe@rteam.com";
 //        String phoneNumber = null;
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
-//        String confirmationCode = "k95";
+//        String confirmationCode = "123";
 //        String password = "uto123";
 
 //        String firstName = "Terry";
@@ -554,19 +566,28 @@ public class ClientTest {
         String summary = "Hero-- this record has REAL base64 encoded crash stack data";
         String detectedDate = "2011-10-10 23:12";
         String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
-        verifyCreateCrashDetect(applicationId, summary, userName, detectedDate, instanceUrl, crashStackDataBase64, appToken);
+		List<String> appDescriptions = new ArrayList<String>();
+		appDescriptions.add("first user action");
+		appDescriptions.add("second user action");
+		List<String> appTimestamps = new ArrayList<String>();
+		appTimestamps.add("2011-10-17 05:55:21.123");
+		appTimestamps.add("2011-10-17 05:55:22.321");
+		List<String> appDurations = new ArrayList<String>();
+		appDurations.add("22");
+		appDurations.add("19");
+        verifyCreateCrashDetect(applicationId, summary, userName, detectedDate, instanceUrl, appDescriptions, appTimestamps, appDurations, crashStackDataBase64, appToken);
 
         // Client Log
         String logLevel = "error";
         String message = "learning to love country music";
         String stackBackTrace = "method1() method2() method3() methodX()";
-		List<String> appDescriptions = new ArrayList<String>();
+		appDescriptions = new ArrayList<String>();
 		appDescriptions.add("first user action");
 		appDescriptions.add("second user action");
-		List<String> appTimestamps = new ArrayList<String>();
+		appTimestamps = new ArrayList<String>();
 		appTimestamps.add("2011-10-17 05:55");
 		appTimestamps.add("2011-10-17 05:55");
-		List<String> appDurations = new ArrayList<String>();
+		appDurations = new ArrayList<String>();
 		appDurations.add("22");
 		appDurations.add("19");
         verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, appToken);
@@ -902,7 +923,8 @@ public class ClientTest {
     }
 
     private static JSONObject verifyCreateCrashDetect(String theApplicationId, String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl,
-                                                  String theCrashStackData, String theUserToken) {
+    		                                          List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
+                                                      String theCrashStackData, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateCrashDetect() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CRASH_DETECT_RESOURCE_URI;
         System.out.println("urlStr = " + urlStr + "\n");
@@ -913,6 +935,20 @@ public class ClientTest {
             if(theDetectedDate != null) json.put("date", theDetectedDate);
             if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
             if(theCrashStackData != null) json.put("stackData", theCrashStackData);
+			
+			if(appActionDescriptions != null) {
+				JSONArray appMemberJsonArray = new JSONArray();
+				int index = 0;
+				for(String desc : appActionDescriptions) {
+					JSONObject appMemberJsonObj = new JSONObject();
+					appMemberJsonObj.put("description", desc);
+					if(appActionTimestamps != null) appMemberJsonObj.put("timestamp", appActionTimestamps.get(index));
+					if(appActionDurations != null) appMemberJsonObj.put("duration", appActionDurations.get(index));
+					index++;
+					appMemberJsonArray.put(appMemberJsonObj);
+				}
+				if(appMemberJsonArray.length() > 0) json.put("appActions", appMemberJsonArray);
+			}
 
             System.out.println(json.toString());
 
