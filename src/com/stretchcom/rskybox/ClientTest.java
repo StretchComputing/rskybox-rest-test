@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class ClientTest {
 
     //private static final String HTTPS_BASE_URL = "https://rskybox-stretchcom.appspot.com/";
-    //private static final String HTTPS_BASE_URL = "https://rskybox-staging.appspot.com/";
+//    private static final String HTTPS_BASE_URL = "https://rskybox-staging.appspot.com/";
     private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
     private static final String REST_BASE_URL = HTTPS_BASE_URL + "rest/v1/";
 
@@ -59,7 +59,7 @@ public class ClientTest {
         // =================================
         // = Create a new set of test data =
         // =================================
-        createTestData();
+//        createTestData();
 
         // Variables for GAE keys.  Replace with your own values.
         //String applicationId = "";
@@ -478,6 +478,9 @@ public class ClientTest {
 //        verifyUpdateEndUser(applicationId, endUserId, version, token1);
     }
 
+    /**
+     * @throws JSONException
+     */
     private static void createTestData() throws JSONException {
         JSONObject json;
         String firstName;
