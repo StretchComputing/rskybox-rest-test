@@ -383,7 +383,7 @@ public class ClientTest {
         // GET LIST OF USERS
         // =================
         // PARAMS:: verifyGetListOfUsers(String theUserToken)
-        //verifyGetListOfUsers(A_PRIORI_TOKEN);
+        //verifyGetListOfUsers(token1);
 
         // ==============
         // GET USER TOKEN
@@ -397,7 +397,7 @@ public class ClientTest {
         // GET USER INFO
         // =============
         // PARAMS:: verifyGetUserInfo(String theUserId, String theUserToken)
-        //verifyGetUserInfo(theUserId, token1);
+        //verifyGetUserInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYMgw", token1);
         //verifyGetUserInfo("current", token1); // get info for "current" user
 
         // ============
@@ -422,26 +422,39 @@ public class ClientTest {
         // ===========
         // PARAMS:: verifyUpdateUser(String theUserId, String theFirstName, String theLastName, String theEmailAddress, String thePhoneNumber,
         //                           String theMobileCarrierId, Boolean theSendEmailNotifications, Boolean theSendSmsNotifications, String theUserToken)
-        //String firstName = "Issac";
-        //String lastName = "Newton";
-        //String emailAddress = "joe@example.com";
-        //String phoneNumber = "5743491522";
-        //String mobileCarrierId = "103";
-        //Boolean sendEmailNotifications = true;
-        //Boolean sendSmsNotifications = true;
-        //verifyUpdateUser(theUserId, firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, A_PRIORI_TOKEN);
+//        String firstName = "Terrance";
+//        String lastName = "Roeland";
+//        String emailAddress = null;
+//        String phoneNumber = null;
+//        String mobileCarrierId = "103";
+//        Boolean sendEmailNotifications = true;
+//        Boolean sendSmsNotifications = true;
+//        String userId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYMgw";
+        
+//        String firstName = "Joseph P.";
+//        String lastName = null;
+//        String emailAddress = null;
+//        String phoneNumber = null;
+//        String mobileCarrierId = "103";
+//        Boolean sendEmailNotifications = true;
+//        Boolean sendSmsNotifications = true;
+//        String userId = "current";
+//        verifyUpdateUser(userId, firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, token1);
 
         // ===========
         // DELETE USER
         // ===========
         // PARAMS:: verifyDeleteUser(String theUserId, String theUserToken)
-        //verifyDeleteUser(theUserId, A_PRIORI_TOKEN);
+        //verifyDeleteUser(theUserId, token1);
+        //verifyDeleteUser("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYOgw", token1);
+        verifyDeleteUser("current", "8v1vqp79te2j6l23qc7q0r9f39");
+        
 
         // ===========================
         // GET LIST OF MOBILE CARRIERS
         // ===========================
         // PARAMS:: verifyGetListOfMobileCarriers(String theUserToken)
-        //verifyGetListOfMobileCarriers(A_PRIORI_TOKEN);
+        //verifyGetListOfMobileCarriers(token1);
 
         // ================
         // CRTEATE END USER
