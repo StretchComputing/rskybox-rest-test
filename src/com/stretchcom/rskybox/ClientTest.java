@@ -109,11 +109,12 @@ public class ClientTest {
         //=====================================================================================================================
         // DEVELOPMENT SERVER(Localhost:8888) ==> Entity Keys
         //=====================================================================================================================
-        String token1 = "9nkrnp8j2r1006727bllbhjt2t"; //joe@stretchcom.com
+        String token1 = "qco96kqe4s5li8n1c4sm94rjkf"; //joe@stretchcom.com
+        String token2 = "5nnbas5iscdnu55ssq5vug8jr9"; //terryroe2@gmail.com
         String tokenGae = "eioh69afs0tdiine3r8arlsfu9"; //joepwro@gmail.com on GAE
-        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGCoM";
-        String applicationToken = "ul9q4i6li8h3j7uo2me3elkah4";
-        String appMemberId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchgvDA";
+        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGD4M";
+        String applicationToken = "qaoif80u1d0l9oktuk8jqgslq3";
+        String appMemberId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhADA";
         String crashDetectId = "";
         String feedbackId = "";
         String clientLogId = "";
@@ -125,20 +126,20 @@ public class ClientTest {
         // ==================
         // PARAMS:: String verifyCreateApplication(String theName, String theVersion, String theUserToken)
 //        String name = "rTeam";
-//        String version = "3.0";
+//        String version = "2.9";
 //        verifyCreateApplication(name, version, token1);
 
         // ========================
         // GET LIST OF APPLICATIONS
         // ========================
         // PARAMS:: verifyGetListOfApplications(String theUserToken)
-        //verifyGetListOfApplications(tokenGae);
+        //verifyGetListOfApplications(token1);
 
         // ====================
         // GET APPLICATION INFO
         // ====================
         // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String theUserToken)
-        //verifyGetApplicationInfo(applicationId, A_PRIORI_TOKEN);
+        //verifyGetApplicationInfo(applicationId, token1);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGBkM", token1);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGBkM", token2);
 
@@ -152,15 +153,15 @@ public class ClientTest {
         // CREATE APP MEMBER
         // =================
         // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
-//        String emailAddress = "joe@rteam.com";
-//        String version = "manager";
+//        String emailAddress = "terryroe2@gmail.com";
+//        String version = "member";
 //        verifyCreateAppMember(applicationId, emailAddress, version, token1);
 
         // =================
         // CONFIRM APP MEMBER
         // =================
         // PARAMS:: String verifyConfirmAppMember(String theApplicationId, String theEmailAddress, String theConfirmationCode)
-//        String emailAddress = "joe@rteam.com";
+//        String emailAddress = "terryroe2@gmail.com";
 //        String confirmationCode = "123";
 //        verifyConfirmAppMember(applicationId, emailAddress, confirmationCode);
 
@@ -169,22 +170,30 @@ public class ClientTest {
         // ======================
         // PARAMS:: verifyGetListOfAppMembers(String theApplicationId, String theUserToken)
         //
-        //verifyGetListOfAppMembers(applicationId, token1);
+        //verifyGetListOfAppMembers(applicationId, token2);
         //verifyGetListOfAppMembers("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y8asBDA", "52kknvni4222nuklsud0kfl2l0");
 
         // ===================
         // GET APP MEMBER INFO
         // ===================
         // PARAMS:: verifyGetAppMemberInfo(String theApplicationId, String theAppMemberId, String theUserToken)
-        //verifyGetAppMemberInfo(applicationId, appMemberId, A_PRIORI_TOKEN);
+        //verifyGetAppMemberInfo(applicationId, appMemberId, token1);
 
         // =================
         // UPDATE APP MEMBER
         // =================
         // PARAMS:: verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String theUserToken)
-        //String newRole = "owner";
-        //String newStatus = "active";
-        //verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, A_PRIORI_TOKEN);
+//        String newRole = "owner";
+//        String newStatus = "active";
+        //verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, token1);
+//        verifyUpdateAppMember(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhCDA", newRole, newStatus, token2);
+
+        // =================
+        // DELETE APP MEMBER
+        // =================
+        // PARAMS:: verifyDeleteAppMember(String theApplicationId, String theAppMemberId, String theUserToken)
+        //verifyDeleteAppMember(applicationId, appMemberId, token1);
+        //verifyDeleteAppMember(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchg_DA", token1);
 
         // ===============
         // CREATE FEEDBACK
@@ -330,12 +339,13 @@ public class ClientTest {
 //        String phoneNumber = "7084204130";
 //        String mobileCarrierId = "103";
         // --- OR ---
-//        String emailAddress = null;
-//        String phoneNumber = "7084204130";
+//        String emailAddress = "joepwro@gmail.com;
+//        String phoneNumber = null;
 //        String mobileCarrierId = "103";
+        // --- OR ---
 //        String emailAddress = "joe@stretchcom.com";
-//      	String phoneNumber = "6302156797";
-//      	String mobileCarrierId = "103";
+//        String phoneNumber = "6302156797";
+//        String mobileCarrierId = "103";
 //        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
 
         // ============
@@ -360,7 +370,7 @@ public class ClientTest {
 
 //        String firstName = "Joe";
 //        String lastName = "Wroblewski";
-//        String emailAddress = "joe@rteam.com";
+//        String emailAddress = "joe@stretchcom.com";
 //        String phoneNumber = null;
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
@@ -370,12 +380,12 @@ public class ClientTest {
 
 //        String firstName = "Terry";
 //        String lastName = "Roe";
-//        String emailAddress = "terryroe@gmail.com";
+//        String emailAddress = "terryroe2@gmail.com";
 //        String phoneNumber = null;
 //        String mobileCarrierId = "103";
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
-//        String confirmationCode = "7tv";
+//        String confirmationCode = "123";
 //        String password = "happyDays";
 //        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
@@ -397,7 +407,7 @@ public class ClientTest {
         // GET USER INFO
         // =============
         // PARAMS:: verifyGetUserInfo(String theUserId, String theUserToken)
-        //verifyGetUserInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYMgw", token1);
+        //verifyGetUserInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYPQw", token1);
         //verifyGetUserInfo("current", token1); // get info for "current" user
 
         // ============
@@ -447,7 +457,7 @@ public class ClientTest {
         // PARAMS:: verifyDeleteUser(String theUserId, String theUserToken)
         //verifyDeleteUser(theUserId, token1);
         //verifyDeleteUser("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYOgw", token1);
-        verifyDeleteUser("current", "8v1vqp79te2j6l23qc7q0r9f39");
+        //verifyDeleteUser("current", "8v1vqp79te2j6l23qc7q0r9f39");
         
 
         // ===========================
@@ -831,6 +841,23 @@ public class ClientTest {
             e.printStackTrace();
         } finally {
             System.out.println("verifyUpdateAppMember() complete\n");
+        }
+    }
+
+    private static void verifyDeleteAppMember(String theApplicationId, String theAppMemberId, String theUserToken) {
+        System.out.println("\n\n verifyDeleteAppMember() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + APP_MEMBER_RESOURCE_URI + "/" + theAppMemberId;
+        System.out.println("urlStr = " + urlStr + "\n");
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_DELETE, null, "login", theUserToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyDeleteAppMember() complete\n");
         }
     }
 
