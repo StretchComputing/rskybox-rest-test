@@ -153,7 +153,7 @@ public class ClientTest {
         // CREATE APP MEMBER
         // =================
         // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
-//        String emailAddress = "terryroe2@gmail.com";
+//        String emailAddress = "thirdMan@gmail.com";
 //        String version = "member";
 //        verifyCreateAppMember(applicationId, emailAddress, version, token1);
 
@@ -292,10 +292,10 @@ public class ClientTest {
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
         //                                       String theStackBackTrace, String theUserToken)
-//        String userName = "TestMicroSeconds1";
+//        String userName = "throttleTest6";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
-//        String message = "learning to love country music";
+//        String message = "throttle is important";
 //        String stackBackTrace = "method1() method2() method3() methodX()";
 //		List<String> appDescriptions = new ArrayList<String>();
 //		appDescriptions.add("first user action");
@@ -307,6 +307,7 @@ public class ClientTest {
 //		appDurations.add("22");
 //		appDurations.add("19");
 //        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
+//      verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, "f59gi8rd80kl3sm94j4hpj33eg");
 
         // =======================
         // GET LIST OF CLIENT LOGS
@@ -499,6 +500,11 @@ public class ClientTest {
         // PARAMS:: verifyUpdateEndUser(String theApplicationId, String theEndUserId, String theVersion, String theUserToken)
 //        String version = "2.1";
 //        verifyUpdateEndUser(applicationId, endUserId, version, token1);
+		
+		// =========
+		// CRON JOBS
+		// =========
+		//verifyCronNotifications();
     }
 
     /**
@@ -1467,6 +1473,22 @@ public class ClientTest {
             System.out.println("verifyUpdateEndUser() complete\n");
         }
     }
+	
+	private static void verifyCronNotifications() {
+		System.out.println("\n\n verifyCronNotifications() starting .....\n");
+		String urlStr = REST_BASE_URL + "cron/notifications";
+		System.out.println("urlStr with encoding = " + urlStr + "\n");
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, null, null);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyCronNotifications() complete\n");
+		}
+	}
 
     // theUrl: complete url
     // thePayload: the JSON payload to send, if any.  Can be null.
