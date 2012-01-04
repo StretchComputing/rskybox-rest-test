@@ -328,6 +328,12 @@ public class ClientTest {
         // =================
         // UPDATE CLIENT LOG
         // =================
+        // PARAMS:: verifyRemoteControlClientLog(String theApplicationId, String theClientLogName, String theNewMode, String theUserToken)
+        //verifyRemoteControlClientLog(applicationId, "entry point 2", "inactive", token1);
+
+        // =========================
+        // REMOTE CONTROL CLIENT LOG
+        // =========================
         // PARAMS:: verifyUpdateClientLog(String theApplicationId, String theClientLogId, String theNewStatus, String theUserToken)
         //verifyUpdateClientLog(applicationId, clientLogId, "archived", token1);
         //verifyUpdateClientLog(applicationId, "bad_id", "new", token1);
@@ -1192,6 +1198,29 @@ public class ClientTest {
             e.printStackTrace();
         } finally {
             System.out.println("verifyUpdateClientLog() complete\n");
+        }
+    }
+
+    private static void verifyRemoteControlClientLog(String theApplicationId, String theClientLogName, String theNewMode, String theUserToken) {
+        System.out.println("\n\n verifyRemoteControlClientLog() starting .....\n");
+        String encodedClientLogName = ClientTest.encode(theClientLogName);
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CLIENT_LOG_RESOURCE_URI + "/remoteControl/" + encodedClientLogName;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("mode", theNewMode);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyRemoteControlClientLog() complete\n");
         }
     }
 
