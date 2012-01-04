@@ -291,7 +291,7 @@ public class ClientTest {
         // ==================
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
-        //                                       String theStackBackTrace, String theUserToken)
+        //                                       String theStackBackTrace, String theLogName, String theUserToken)
 //        String userName = "throttleTest6";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
@@ -306,8 +306,8 @@ public class ClientTest {
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
-//        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, token1);
-//      verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, "f59gi8rd80kl3sm94j4hpj33eg");
+//		String logName = "log insertion point #1";
+//		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, logName, token1);
 
         // =======================
         // GET LIST OF CLIENT LOGS
@@ -328,15 +328,15 @@ public class ClientTest {
         // =================
         // UPDATE CLIENT LOG
         // =================
-        // PARAMS:: verifyRemoteControlClientLog(String theApplicationId, String theClientLogName, String theNewMode, String theUserToken)
-        //verifyRemoteControlClientLog(applicationId, "entry point 2", "inactive", token1);
+        // PARAMS:: verifyUpdateClientLog(String theApplicationId, String theClientLogId, String theNewStatus, String theUserToken)
+        //verifyUpdateClientLog(applicationId, clientLogId, "archived", token1);
+        //verifyUpdateClientLog(applicationId, "bad_id", "new", token1);
 
         // =========================
         // REMOTE CONTROL CLIENT LOG
         // =========================
-        // PARAMS:: verifyUpdateClientLog(String theApplicationId, String theClientLogId, String theNewStatus, String theUserToken)
-        //verifyUpdateClientLog(applicationId, clientLogId, "archived", token1);
-        //verifyUpdateClientLog(applicationId, "bad_id", "new", token1);
+        // PARAMS:: verifyRemoteControlClientLog(String theApplicationId, String theClientLogName, String theNewMode, String theUserToken)
+        //verifyRemoteControlClientLog(applicationId, "log insertion point #1", "active", token1);
 
         // =========================
         // REQUEST CONFIRMATION CODE
@@ -628,7 +628,8 @@ public class ClientTest {
 		appDurations = new ArrayList<String>();
 		appDurations.add("22");
 		appDurations.add("19");
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, appToken);
+		String logName = "first log name";
+        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, logName, appToken);
 
         // End Users
         userName = "joew";
@@ -1100,7 +1101,8 @@ public class ClientTest {
     }
 
     private static JSONObject verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
-    		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, String theStackBackTrace, String theUserToken) {
+    		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, String theStackBackTrace, 
+    		String theLogName, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CLIENT_LOG_RESOURCE_URI;
         JSONObject json = new JSONObject();
@@ -1110,6 +1112,7 @@ public class ClientTest {
             if(theLogLevel != null) json.put("logLevel", theLogLevel);
             if(theMessage != null) json.put("message", theMessage);
             if(theStackBackTrace != null) json.put("stackBackTrace", theStackBackTrace);
+            if(theLogName != null) json.put("logName", theLogName);
 			
 			if(appActionDescriptions != null) {
 				JSONArray appMemberJsonArray = new JSONArray();
