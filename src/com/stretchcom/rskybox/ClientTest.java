@@ -59,7 +59,7 @@ public class ClientTest {
         // =================================
         // = Create a new set of test data =
         // =================================
-//        createTestData();
+        // createTestData();
 
         // Variables for GAE keys.  Replace with your own values.
         //String applicationId = "";
@@ -543,7 +543,7 @@ public class ClientTest {
         phoneNumber = "6302156979";
         sendEmailNotifications = false;
         sendSmsNotifications = true;
-        confirmationCode = json.getString("confirmationCode");
+        confirmationCode = "123"; //json.getString("confirmationCode");
         password = "password";
         verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
@@ -557,7 +557,7 @@ public class ClientTest {
         emailAddress = "njw438@gmail.com";
         sendEmailNotifications = true;
         sendSmsNotifications = false;
-        confirmationCode = json.getString("confirmationCode");
+        confirmationCode = "123"; //json.getString("confirmationCode");
         password = "password";
         verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
 
@@ -571,7 +571,7 @@ public class ClientTest {
         emailAddress = "terryroe@gmail.com";
         sendEmailNotifications = true;
         sendSmsNotifications = false;
-        confirmationCode = json.getString("confirmationCode");
+        confirmationCode = "123"; //json.getString("confirmationCode");
         password = "password";
         json = verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, confirmationCode, password);
         String ownerToken = json.getString("token");
