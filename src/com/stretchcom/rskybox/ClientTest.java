@@ -114,7 +114,7 @@ public class ClientTest {
         String tokenGae = "ja5ajehsa7treft01o06rovpqb"; //joepwro@gmail.com on GAE
         String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGD4M";
         String applicationToken = "qaoif80u1d0l9oktuk8jqgslq3";
-        String appMemberId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhADA";
+        String appMemberId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhCDA";
         String crashDetectId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0NyYXNoRGV0ZWN0GEcM";
         String feedbackId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDgsSCEZlZWRiYWNrGFgM";
         String clientLogId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUNsaWVudExvZxhXDA";
@@ -184,9 +184,9 @@ public class ClientTest {
         // UPDATE APP MEMBER
         // =================
         // PARAMS:: verifyUpdateAppMember(String theApplicationId, String theAppMemberId, String theNewRole, String theNewStatus, String theUserToken)
-//        String newRole = "owner";
+//        String newRole = "manager";
 //        String newStatus = "active";
-        //verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, token1);
+//        verifyUpdateAppMember(applicationId, appMemberId, newRole, newStatus, token1);
 //        verifyUpdateAppMember(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhCDA", newRole, newStatus, token2);
 
         // =================
@@ -483,17 +483,17 @@ public class ClientTest {
 //        Boolean sendSmsNotifications = true;
 //        String userId = "current";
         
-      String firstName = "Bert";
-      String lastName = null;
-      String emailAddress = "marypoppins@example.com";
-      String phoneNumber = "3124680892";
-      String emailConfirmationCode = "123";
-      String phoneConfirmationCode = "123";
-      String mobileCarrierId = null;
-      Boolean sendEmailNotifications = null;
-      Boolean sendSmsNotifications = null;
-      String userId = "current";
-      verifyUpdateUser(userId, firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, emailConfirmationCode, phoneConfirmationCode, tokenmp);
+//      String firstName = "Bert";
+//      String lastName = null;
+//      String emailAddress = "marypoppins@example.com";
+//      String phoneNumber = "3124680892";
+//      String emailConfirmationCode = "123";
+//      String phoneConfirmationCode = "123";
+//      String mobileCarrierId = null;
+//      Boolean sendEmailNotifications = null;
+//      Boolean sendSmsNotifications = null;
+//      String userId = "current";
+//      verifyUpdateUser(userId, firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, emailConfirmationCode, phoneConfirmationCode, tokenmp);
 
         // ===========
         // DELETE USER
