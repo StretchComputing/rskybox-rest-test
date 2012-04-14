@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class ClientTest {
 
     //private static final String HTTPS_BASE_URL = "https://rskybox-stretchcom.appspot.com/";
-//    private static final String HTTPS_BASE_URL = "https://rskybox-staging.appspot.com/";
+    //private static final String HTTPS_BASE_URL = "https://rskybox-staging.appspot.com/";
     private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
     private static final String REST_BASE_URL = HTTPS_BASE_URL + "rest/v1/";
 
@@ -110,15 +110,14 @@ public class ClientTest {
         //=====================================================================================================================
         // DEVELOPMENT SERVER(Localhost:8888) ==> Entity Keys
         //=====================================================================================================================
-        String token1 = "qco96kqe4s5li8n1c4sm94rjkf"; //joe@stretchcom.com
-        String token2 = "5nnbas5iscdnu55ssq5vug8jr9"; //terryroe2@gmail.com
-        String tokenGae = "ja5ajehsa7treft01o06rovpqb"; //joepwro@gmail.com on GAE
-        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGD4M";
-        String applicationToken = "qaoif80u1d0l9oktuk8jqgslq3";
-        String appMemberId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUFwcE1lbWJlchhCDA";
-        String crashDetectId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0NyYXNoRGV0ZWN0GEcM";
-        String feedbackId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDgsSCEZlZWRiYWNrGFgM";
-        String clientLogId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUNsaWVudExvZxhXDA";
+        String token1 = "299ajgps5j1p29qs2h05hhmu7u"; //joepwro@gmail.com
+        String token2 = "khso46e4u0kkvterm3e1d7u8h0"; //joe@stretchcom.com GAE
+        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGHYM";
+        String applicationToken = "8b5b7vaasr3gddj6bbhj66ovhl";
+        String appMemberId = "";
+        String crashDetectId = "";
+        String feedbackId = "";
+        String clientLogId = "";
         String endUserId = "";
         //=====================================================================================================================
 
@@ -127,7 +126,7 @@ public class ClientTest {
         // ==================
         // PARAMS:: String verifyCreateApplication(String theName, String theVersion, String theUserToken)
 //        String name = "rTeam";
-//        String version = "2.9";
+//        String version = "3.1";
 //        verifyCreateApplication(name, version, token1);
 
         // ========================
@@ -135,6 +134,7 @@ public class ClientTest {
         // ========================
         // PARAMS:: verifyGetListOfApplications(String theUserToken)
         //verifyGetListOfApplications(token1);
+        //verifyGetListOfApplications(token2);
 
         // ====================
         // GET APPLICATION INFO
@@ -142,7 +142,7 @@ public class ClientTest {
         // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String theUserToken)
         //verifyGetApplicationInfo(applicationId, token1);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGD4M", token1);
-        //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGBkM", token2);
+        //verifyGetApplicationInfo("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", token2);
 
         // ==================
         // UPDATE APPLICATION
@@ -155,9 +155,9 @@ public class ClientTest {
         // =================
         // PARAMS:: String verifyCreateAppMember(String theApplicationId, String theEmailAddress, String theRole, String theUserToken)
 //        String emailAddress = "terryroe2@gmail.com";
-//        String version = "member";
-//        verifyCreateAppMember("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGEMM", emailAddress, version, token1);
-//      verifyCreateAppMember(applicationId, emailAddress, version, token1);
+//        String role = "member";
+//        verifyCreateAppMember(applicationId, emailAddress, role, token1);
+        //verifyCreateAppMember("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGEMM", emailAddress, role, token1);
         
         
 
@@ -217,7 +217,7 @@ public class ClientTest {
         //verifyGetListOfFeedback(applicationId, null, token1); // default status of "new"
         //verifyGetListOfFeedback(applicationId, "new", token1);
         //verifyGetListOfFeedback(applicationId, "archived", token1);
-        //verifyGetListOfFeedback(applicationId, "all", token1);
+        //verifyGetListOfFeedback(applicationId, "all", token2);
         //verifyGetListOfFeedback(applicationId, "bad_status", token1);
 
         // =================
@@ -247,7 +247,7 @@ public class ClientTest {
         // PARAMS:: String verifyCreateCrashDetect(String theApplicationId, String theSummary, String theUserName, String theDetectedDate, String theInstanceUrl,
         //                                         List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
         //                                         String theCrashStackData, String theUserToken)
-//        String summary = "test: ** auto archiving with back dating";
+//        String summary = "test: SECOND email notifications";
 //        String detectedDate = "2012-04-02 09:16:00.000";
 //        String userName = "aEinstein";
 //        String instanceUrl = "http://fruition18.service-now.com/";
@@ -297,12 +297,18 @@ public class ClientTest {
         // ==================
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
-        //                                       String theStackBackTrace, String theLogName, String, theCreatedDate, String theUserToken)
-//        String userName = "archiveTest with back dating";
+        //                                       List<String> theStackBackTrace, String theLogName, String, theCreatedDate, String theUserToken)
+//        String userName = "stack back trace test";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
-//        String message = "testing auto archiving";
-//        String stackBackTrace = "method1() method2() method3() methodX()";
+//        String message = "stack back trace message";
+//		List<String> stackBackTraces = new ArrayList<String>();
+//		stackBackTraces.add("method1()");
+//		stackBackTraces.add("method2()");
+//		stackBackTraces.add("method3()");
+//		stackBackTraces.add("method4()");
+//		stackBackTraces.add("method5()");
+//		stackBackTraces.add("method6()");
 //		List<String> appDescriptions = new ArrayList<String>();
 //		appDescriptions.add("first user action");
 //		appDescriptions.add("second user action");
@@ -312,10 +318,10 @@ public class ClientTest {
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
-//		String logName = "log insertion point #1";
+//		String logName = "I'm trying a little longer message to see how the email table will wrap this longer text and somehow still make it look good.";
 //        String createdDate = "2012-03-31T02:55:00.567Z";
-//		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, logName, createdDate, token1);
-//		verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24YqcACDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, logName, createdDate, "n099bd3afgovlhfcdmfl1s4b6d");
+//		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, token1);
+//		verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, token2);
 
         
         // =======================
@@ -325,7 +331,7 @@ public class ClientTest {
         //verifyGetListOfClientLogs(applicationId, null, token1); // default status of 'new'
         //verifyGetListOfClientLogs(applicationId, "new", token1);
         //verifyGetListOfClientLogs(applicationId, "archived", token1);
-        //verifyGetListOfClientLogs(applicationId, "all", token1);
+        //verifyGetListOfClientLogs("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", "new", token2);
 
         // ===================
         // GET CLIENT LOG INFO
@@ -355,9 +361,9 @@ public class ClientTest {
 //        String phoneNumber = "3124680892";
 //        String mobileCarrierId = "103";
         // --- OR ---
-//        String emailAddress = "joepwro@gmail.com;
+//        String emailAddress = "joepwro@gmail.com";
 //        String phoneNumber = null;
-//        String mobileCarrierId = "103";
+//        String mobileCarrierId = null;
         // --- OR ---
 //        String emailAddress = "joe@stretchcom.com";
 //        String phoneNumber = "6302156797";
@@ -392,9 +398,9 @@ public class ClientTest {
 
 //        String firstName = "Joe";
 //        String lastName = "Wroblewski";
-//        String emailAddress = "joe@stretchcom.com";
+//        String emailAddress = "joepwro@gmail.com";
 //        String phoneNumber = null;
-//        String mobileCarrierId = "103";
+//        String mobileCarrierId = null;
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
 //        String emailConfirmationCode = "123";
@@ -405,7 +411,7 @@ public class ClientTest {
 //        String lastName = "Roe";
 //        String emailAddress = "terryroe2@gmail.com";
 //        String phoneNumber = null;
-//        String mobileCarrierId = "103";
+//        String mobileCarrierId = null;
 //        Boolean sendEmailNotifications = true;
 //        Boolean sendSmsNotifications = true;
 //        String emailConfirmationCode = "123";
@@ -444,7 +450,7 @@ public class ClientTest {
         // =============
         // PARAMS:: verifyGetUserInfo(String theUserId, String theUserToken)
         //verifyGetUserInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYPQw", token1);
-        //verifyGetUserInfo("current", token1); // get info for "current" user
+        //verifyGetUserInfo("current", token2); // get info for "current" user
         //verifyGetUserInfo("current", tokenmp); // get info for "current" user
 
         // ============
@@ -560,7 +566,7 @@ public class ClientTest {
 		// ===============
 		// DATA MIGRATIONS
 		// ===============
-		verifyUserMigration("archiverTask", null); // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
+		//verifyUserMigration("archiverTask", null); // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
     }
 
     /**
@@ -668,7 +674,11 @@ public class ClientTest {
         // Client Log
         String logLevel = "error";
         String message = "learning to love country music";
-        String stackBackTrace = "method1() method2() method3() methodX()";
+        List<String> stackBackTraces = new ArrayList<String>();
+        stackBackTraces.add("method1()");
+        stackBackTraces.add("method2()");
+        stackBackTraces.add("method3()");
+        stackBackTraces.add("method4()");
 		appDescriptions = new ArrayList<String>();
 		appDescriptions.add("first user action");
 		appDescriptions.add("second user action");
@@ -679,7 +689,7 @@ public class ClientTest {
 		appDurations.add("22");
 		appDurations.add("19");
 		String logName = "first log name";
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTrace, logName, null, appToken);
+        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, null, appToken);
 
         // End Users
         userName = "joew";
@@ -1151,7 +1161,7 @@ public class ClientTest {
     }
 
     private static JSONObject verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
-    		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, String theStackBackTrace, 
+    		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, List<String> theStackBackTraces, 
     		String theLogName, String theCreatedDate, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CLIENT_LOG_RESOURCE_URI;
@@ -1161,9 +1171,16 @@ public class ClientTest {
             if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
             if(theLogLevel != null) json.put("logLevel", theLogLevel);
             if(theMessage != null) json.put("message", theMessage);
-            if(theStackBackTrace != null) json.put("stackBackTrace", theStackBackTrace);
             if(theLogName != null) json.put("logName", theLogName);
             if(theCreatedDate != null) json.put("date", theCreatedDate);
+			
+			if(theStackBackTraces != null) {
+				JSONArray stackBackTracesJsonArray = new JSONArray();
+				for(String sbt : theStackBackTraces) {
+					stackBackTracesJsonArray.put(sbt);
+				}
+				if(stackBackTracesJsonArray.length() > 0) json.put("stackBackTrace", stackBackTracesJsonArray);
+			}
 			
 			if(appActionDescriptions != null) {
 				JSONArray appMemberJsonArray = new JSONArray();
