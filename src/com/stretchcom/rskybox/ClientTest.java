@@ -297,11 +297,11 @@ public class ClientTest {
         // ==================
         // PARAMS:: String verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
-        //                                       List<String> theStackBackTrace, String theLogName, String, theCreatedDate, String theUserToken)
-//        String userName = "stack back trace test";
+        //                                       List<String> theStackBackTrace, String theLogName, String, theCreatedDate, String theSummary, String theUserToken)
+//        String userName = "added summary field";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
-//        String message = "stack back trace message";
+//        String message = "added summary field message";
 //		List<String> stackBackTraces = new ArrayList<String>();
 //		stackBackTraces.add("method1()");
 //		stackBackTraces.add("method2()");
@@ -313,17 +313,18 @@ public class ClientTest {
 //		appDescriptions.add("first user action");
 //		appDescriptions.add("second user action");
 //		List<String> appTimestamps = new ArrayList<String>();
-//		appTimestamps.add("2011-10-17 05:55:21.123");
-//		appTimestamps.add("2011-10-17 05:55:22.321");
+//		appTimestamps.add("2012-04-14 05:55:21.123");
+//		appTimestamps.add("2012-04-14 05:55:22.321");
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
-//		String logName = "I'm trying a little longer message to see how the email table will wrap this longer text and somehow still make it look good.";
-//        String createdDate = "2012-03-31T02:55:00.567Z";
-//		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, token1);
-//		verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, token2);
+//		String logName = "fake::log::name";
+//        String createdDate = "2012-04-14T02:55:00.567Z";
+//        String summary = "ios 5.1, rteam version 3.1";
+//		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token1);
+		//verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
 
-        
+		
         // =======================
         // GET LIST OF CLIENT LOGS
         // =======================
@@ -331,14 +332,14 @@ public class ClientTest {
         //verifyGetListOfClientLogs(applicationId, null, token1); // default status of 'new'
         //verifyGetListOfClientLogs(applicationId, "new", token1);
         //verifyGetListOfClientLogs(applicationId, "archived", token1);
-        //verifyGetListOfClientLogs("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", "new", token2);
+        //verifyGetListOfClientLogs("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEAsSCUNsaWVudExvZxiNAQw", "new", token2);
 
         // ===================
         // GET CLIENT LOG INFO
         // ===================
         // PARAMS:: verifyGetClientLogsInfo(String theApplicationId, String theClientLogId, String theUserToken)
         //verifyGetClientLogsInfo(applicationId, clientLogId, token1);
-        //verifyGetClientLogsInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCUNsaWVudExvZxhgDA", token1);
+        //verifyGetClientLogsInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEAsSCUNsaWVudExvZxiNAQw", token1);
 
         // =================
         // UPDATE CLIENT LOG
@@ -441,8 +442,8 @@ public class ClientTest {
         // GET USER TOKEN
         // ==============
         // PARAMS:: verifyGetUserToken(String theUserName, String thePassword)
-//        String userName = "gale@stretchcom.com";
-//        String password = "happyDays";
+//        String userName = "joepwro@gmail.com";
+//        String password = "uto123";
 //        verifyGetUserToken(userName, password);
 
         // =============
@@ -450,7 +451,7 @@ public class ClientTest {
         // =============
         // PARAMS:: verifyGetUserInfo(String theUserId, String theUserToken)
         //verifyGetUserInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yCgsSBFVzZXIYPQw", token1);
-        //verifyGetUserInfo("current", token2); // get info for "current" user
+        //verifyGetUserInfo("current", token1); // get info for "current" user
         //verifyGetUserInfo("current", tokenmp); // get info for "current" user
 
         // ============
@@ -689,7 +690,8 @@ public class ClientTest {
 		appDurations.add("22");
 		appDurations.add("19");
 		String logName = "first log name";
-        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, null, appToken);
+        String clientSummary = "ios 5.1, rteam version 3.1";
+        verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, null, clientSummary, appToken);
 
         // End Users
         userName = "joew";
@@ -1162,7 +1164,7 @@ public class ClientTest {
 
     private static JSONObject verifyCreateClientLog(String theApplicationId, String theUserName, String theInstanceUrl, String theLogLevel, String theMessage,
     		List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations, List<String> theStackBackTraces, 
-    		String theLogName, String theCreatedDate, String theUserToken) {
+    		String theLogName, String theCreatedDate, String theSummary, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateClientLog() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + CLIENT_LOG_RESOURCE_URI;
         JSONObject json = new JSONObject();
@@ -1173,6 +1175,7 @@ public class ClientTest {
             if(theMessage != null) json.put("message", theMessage);
             if(theLogName != null) json.put("logName", theLogName);
             if(theCreatedDate != null) json.put("date", theCreatedDate);
+            if(theSummary != null) json.put("summary", theSummary);
 			
 			if(theStackBackTraces != null) {
 				JSONArray stackBackTracesJsonArray = new JSONArray();
