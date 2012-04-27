@@ -526,17 +526,22 @@ public class ClientTest {
         // ===============
         // CREATE END USER
         // ===============
-        // PARAMS:: String verifyCreateEndUser(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String theUserToken, String theUserToken)
-        //String userName = "joew";
+        // PARAMS:: String verifyCreateEndUser(String theApplicationId, String theUserId, String theUserName, String theApplication, String theVersion,  
+        //                                     String theInstanceUrl, String theSummary, String theUserToken)
+        //String userId = "joew";
+        //String userName = "Joe Wroblewski"
         //String application = "livefeed";
         //String version = "1.0";
         //String instanceUrl = "fruition18.service-now.com";
+        //String summary = "ios version 5.1, app version 2.0";
 
-//        String userName = "nickw";
+//        String userId = "nickw";
+//        String userName = "Nick Wroblewski";
 //        String application = "LiveFeed";
 //        String version = "1.1";
 //        String instanceUrl = "fruition18.service-now.com";
-//        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, token1);
+//        String summary = "ios version 5.1, app version 2.0";
+//        verifyCreateEndUser(applicationId, userId, userName, application, version, instanceUrl, summary, token1);
 
         // =====================
         // GET LIST OF END USERS
@@ -549,7 +554,7 @@ public class ClientTest {
         // =================
         // PARAMS:: verifyGetEndUserInfo(String theApplicationId, String theEndUserId, String theUserToken)
         //verifyGetEndUserInfo(applicationId, endUserId, token1);
-        //verifyGetEndUserInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDQsSB0VuZFVzZXIYWQwf", token1);
+        //verifyGetEndUserInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDgsSB0VuZFVzZXIYjgEM", token1);
 
         // ===============
         // UPDATE END USER
@@ -585,9 +590,11 @@ public class ClientTest {
         String confirmationCode;
         String password;
 
-        String userName = "dennisRitchie";
+        String userId = "dennisRitchie@gmail.com";
+        String userName = "Dennis Ritchie";
         String instanceUrl = "http://fruition18.service-now.com/";
         String version = "1.0";
+        String summary = "OS version 5.1";
 
         // Users
         emailAddress = null;
@@ -658,7 +665,7 @@ public class ClientTest {
         verifyCreateFeedback(applicationId, userName, recordedDate, instanceUrl, voice, appToken);
 
         // Crash Detect
-        String summary = "Hero-- this record has REAL base64 encoded crash stack data";
+        summary = "Hero-- this record has REAL base64 encoded crash stack data";
         String detectedDate = "2011-10-10 23:12";
         String crashStackDataBase64 = "dGhpcyBpcyB0ZXN0IGRhdGEgdGhhdCB3YXMgZW5jb2RlZCB1c2luZyBhbiBvbmxpbmUgdG9vbA==";
 		List<String> appDescriptions = new ArrayList<String>();
@@ -696,12 +703,12 @@ public class ClientTest {
         // End Users
         userName = "joew";
         String application = "livefeed";
-        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, appToken);
+        verifyCreateEndUser(applicationId, userId, userName, application, version, instanceUrl, summary, appToken);
 
         userName = "nickw";
         application = "LiveFeed";
         version = "1.1";
-        verifyCreateEndUser(applicationId, userName, application, version, instanceUrl, appToken);
+        verifyCreateEndUser(applicationId, userId, userName, application, version, instanceUrl, summary, appToken);
     }
 
     private static JSONObject verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId) {
@@ -1500,15 +1507,18 @@ public class ClientTest {
         }
     }
 
-    private static JSONObject verifyCreateEndUser(String theApplicationId, String theUserName, String theApplication, String theVersion, String theInstanceUrl, String theUserToken) {
+    private static JSONObject verifyCreateEndUser(String theApplicationId, String theUserId, String theUserName, String theApplication, String theVersion,
+    		                                      String theInstanceUrl, String theSummary, String theUserToken) {
         if(isLoggingEnabled) System.out.println("\n\n verifyCreateEndUser() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI;
         JSONObject json = new JSONObject();
         try {
+            if(theUserId != null) json.put("userId", theUserId);
             if(theUserName != null) json.put("userName", theUserName);
             if(theApplication != null) json.put("application", theApplication);
             if(theVersion != null) json.put("version", theVersion);
             if(theInstanceUrl != null) json.put("instanceUrl", theInstanceUrl);
+            if(theSummary != null) json.put("summary", theSummary);
 
             System.out.println(json.toString());
 
