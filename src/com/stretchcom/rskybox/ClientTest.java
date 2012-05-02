@@ -302,7 +302,7 @@ public class ClientTest {
 //        String userName = "joepwro";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
-//        String message = "SUNDAY12 client log for same incident";
+//        String message = "SUNDAY15 client log for same incident";
 //		List<String> stackBackTraces = new ArrayList<String>();
 //		stackBackTraces.add("method1()");
 //		stackBackTraces.add("method2()");
@@ -319,8 +319,8 @@ public class ClientTest {
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
-//		String logName = "we::can::succeed::now3";
-//        String createdDate = "2012-04-29T4:55:00.567Z";
+//		String logName = "incident.counts.in.application.5";
+//        String createdDate = "2012-05-01T7:55:00.567Z";
 //        String summary = "ios 5.1, rteam version 3.1";
 //		verifyCreateClientLog(applicationId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token1);
 		//verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
@@ -597,7 +597,8 @@ public class ClientTest {
 		// ===============
 		// DATA MIGRATIONS
 		// ===============
-		//verifyUserMigration("archiverTask", null); // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
+		//verifyUserMigration("archiverTask", null);         // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
+		//verifyUserMigration("cleanRskyboxLogsTask", null); // removes most rSkybox logs created on 4/28/2012 by an infinite loop in the rSkybox client
     }
 
     /**
