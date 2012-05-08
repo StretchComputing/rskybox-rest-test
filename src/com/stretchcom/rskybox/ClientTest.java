@@ -306,7 +306,7 @@ public class ClientTest {
 //        String userName = "Joe Wroblewski";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "error";
-//        String message = "SUNDAY15 client log for same incident";
+//        String message = "SATURDAY3 client log for same incident";
 //		List<String> stackBackTraces = new ArrayList<String>();
 //		stackBackTraces.add("method1()");
 //		stackBackTraces.add("method2()");
@@ -323,11 +323,11 @@ public class ClientTest {
 //		List<String> appDurations = new ArrayList<String>();
 //		appDurations.add("22");
 //		appDurations.add("19");
-//		String logName = "incident.counts.in.application.8";
-//        String createdDate = "2012-05-04T7:55:00.567Z";
+//		String logName = "incident.test.archiver.1";
+//        String createdDate = "2012-04-20T8:59:00.567Z";
 //        String summary = "ios 5.1, rteam version 3.1";
 //		verifyCreateClientLog(applicationId, userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token1);
-		//verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
+//		verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
 
 		
         // =======================
@@ -374,7 +374,14 @@ public class ClientTest {
         // =================
         // PARAMS:: verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theUserToken)
         //verifyGetIncidentInfo(applicationId, theIncidentId, token1);
-        //verifyGetIncidentInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GLIBDA", token1);
+        //verifyGetIncidentInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPcBDA", token1);
+
+        // ===============
+        // UPDATE INCIDENT
+        // ===============
+        // PARAMS:: verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theUserToken)
+        //verifyUpdateIncident(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPcBDA", "closed", token1);
+        //verifyUpdateIncident(applicationId, "bad_id", "new", token1);
 
         // =======================
         // REMOTE CONTROL INCIDENT
@@ -1394,6 +1401,28 @@ public class ClientTest {
             e.printStackTrace();
         } finally {
             System.out.println("verifyGetIncidentInfo() complete\n");
+        }
+    }
+
+    private static void verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theUserToken) {
+        System.out.println("\n\n verifyUpdateIncident() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + INCIDENT_RESOURCE_URI + "/" + theIncidentId;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("status", theNewStatus);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyUpdateIncident() complete\n");
         }
     }
 
