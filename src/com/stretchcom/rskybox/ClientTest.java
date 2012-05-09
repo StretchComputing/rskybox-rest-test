@@ -228,7 +228,7 @@ public class ClientTest {
         // =================
         // PARAMS:: verifyGetFeedbackInfo(String theApplicationId, String theFeedbackId, String theUserToken)
         //verifyGetFeedbackInfo(applicationId, feedbackId, token1);
-        //verifyGetFeedbackInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDgsSCEZlZWRiYWNrGGQM", token1); 
+        //verifyGetFeedbackInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEZlZWRiYWNrGNUBDA", token1); 
         
 
         // ===============
@@ -281,7 +281,7 @@ public class ClientTest {
         // =====================
         // PARAMS:: verifyGetCrashDetectInfo(String theApplicationId, String theCrashDetectId, String theUserToken)
         //verifyGetCrashDetectInfo(applicationId, crashDetectId, token1);
-        //verifyGetCrashDetectInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0NyYXNoRGV0ZWN0GGIM", token1);
+        //verifyGetCrashDetectInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEgsSC0NyYXNoRGV0ZWN0GPMBDA", token1);
 
         // ===================
         // UPDATE CRASH DETECT
@@ -344,7 +344,7 @@ public class ClientTest {
         // ===================
         // PARAMS:: verifyGetClientLogsInfo(String theApplicationId, String theClientLogId, String theUserToken)
         //verifyGetClientLogsInfo(applicationId, clientLogId, token1);
-        //verifyGetClientLogsInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEAsSCUNsaWVudExvZxiNAQw", token1);
+        //verifyGetClientLogsInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEAsSCUNsaWVudExvZxj1AQw", token1);
 
         // =================
         // UPDATE CLIENT LOG
@@ -365,16 +365,16 @@ public class ClientTest {
         // =====================
         // PARAMS:: verifyGetListOfIncidents(String theApplicationId, String theStatus, String theTag, String theUserToken)
         //verifyGetListOfIncidents(applicationId, null, "log", token1); // default of 'open' status
-        //verifyGetListOfIncidents(applicationId, "open", "log", token1);
+        //verifyGetListOfIncidents(applicationId, "open", "feedback", token1);
         //verifyGetListOfIncidents(applicationId, "closed", null, token1);
         //verifyGetListOfIncidents(applicationId, "all", "log", token1);
 
         // =================
         // GET INCIDENT INFO
         // =================
-        // PARAMS:: verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theUserToken)
-        //verifyGetIncidentInfo(applicationId, theIncidentId, token1);
-        //verifyGetIncidentInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPcBDA", token1);
+        // PARAMS:: verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theIncludeEvents, String theUserToken)
+        //verifyGetIncidentInfo(applicationId, theIncidentId, theIncludeEvents, token1);
+        //verifyGetIncidentInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPABDA", "true", token1);
 
         // ===============
         // UPDATE INCIDENT
@@ -1387,9 +1387,14 @@ public class ClientTest {
         }
     }
 
-    private static void verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theUserToken) {
+    private static void verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theIncludeEvents, String theUserToken) {
         System.out.println("\n\n verifyGetIncidentInfo() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + INCIDENT_RESOURCE_URI + "/" + theIncidentId;
+        urlStr = urlStr + "?" + "fakeFirstParam=none";
+        if(theIncludeEvents != null) {
+            String encodedIncludeEvents = ClientTest.encode(theIncludeEvents);
+            urlStr = urlStr + "&" + "includeEvents=" + encodedIncludeEvents;
+        }
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
