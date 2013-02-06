@@ -2,6 +2,7 @@ package com.stretchcom.rskybox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -37,6 +38,9 @@ public class ClientTest {
     private static final String MOBILE_CARRIER_RESOURCE_URI = "mobileCarriers";
     private static final String END_USER_RESOURCE_URI = "endUsers";
     private static final String DATASTORE_RESOURCE_URI = "datastore";
+    private static final String DEMO_URI = "demo/index.html";
+    private static final String STREAM_URI = "streams";
+    private static final String PACKET_URI = "packets";
 
     private static int totalAssertCount = 0;
     private static int passingAssertCount = 0;
@@ -111,16 +115,17 @@ public class ClientTest {
         //=====================================================================================================================
         // DEVELOPMENT SERVER(Localhost:8888) ==> Entity Keys
         //=====================================================================================================================
-        String token1 = "299ajgps5j1p29qs2h05hhmu7u"; //joepwro@gmail.com
-        String token2 = "khso46e4u0kkvterm3e1d7u8h0"; //joe@stretchcom.com GAE
-        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGHYM";
-        String rteamAppId = "ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA";
-        String applicationToken = "8b5b7vaasr3gddj6bbhj66ovhl";
+        String token1 = "t8gg9rcv37peov61e1pig793h4"; //joepwro@gmail.com
+        String token2 = ""; //joe@stretchcom.com GAE
+        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEgsSC0FwcGxpY2F0aW9uGLECDA";
+        String rteamAppId = "";
+        String applicationToken = "";
         String appMemberId = "";
         String crashDetectId = "";
         String feedbackId = "";
         String clientLogId = "";
         String endUserId = "";
+        String incidentId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GLMCDA";
         //=====================================================================================================================
 
         // ==================
@@ -142,8 +147,8 @@ public class ClientTest {
         // GET APPLICATION INFO
         // ====================
         // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String theUserToken)
-        //verifyGetApplicationInfo(rteamAppId, token2);
-        //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGD4M", token1);
+        //verifyGetApplicationInfo(rteamAppId, token1);
+        //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGHYM", token1);
         //verifyGetApplicationInfo("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", token2);
 
         // ==================
@@ -307,7 +312,7 @@ public class ClientTest {
 //        String userName = "Joe Wroblewski";
 //        String instanceUrl = "http://stretchcom.com/";
 //        String logLevel = "warn";
-//        String message = "SATURDAY3 client log for same incident";
+//        String message = "joe for arc 26";
 //		List<String> stackBackTraces = new ArrayList<String>();
 //		stackBackTraces.add("method1()");
 //		stackBackTraces.add("method2()");
@@ -325,10 +330,10 @@ public class ClientTest {
 //		appDurations.add("22");
 //		appDurations.add("19");
 //		String logName = "test.incidents.pagination.1";
-//        String createdDate = "2012-05-19T8:59:00.567Z";
+//        String createdDate = "2012-06-04T8:59:00.567Z";
 //        String summary = "ios 5.1, rteam version 3.1";
 //		verifyCreateClientLog(applicationId, userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token1);
-//		verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
+		//verifyCreateClientLog("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, token2);
 
 		
         // =======================
@@ -365,7 +370,8 @@ public class ClientTest {
         // GET LIST OF INCIDENTS
         // =====================
         // PARAMS:: verifyGetListOfIncidents(String theApplicationId, String theStatus, String theTag, String thePageSize, String theCursor, String theUserToken)
-        //verifyGetListOfIncidents(applicationId, "all", "log",  "1", "E-ABAIICJWoScnNreWJveC1zdHJldGNoY29tcg8LEghJbmNpZGVudBjiAQwU", token1); // default of 'open' status
+//        verifyGetListOfIncidents(applicationId, "all", "log",  "1", null, token1); // default of 'open' status
+        //verifyGetListOfIncidents(applicationId, "all", "log",  "2", "E-ABAOsB8gESbGFzdFVwZGF0ZWRHbXREYXRl-gEJCLi-y-aW-K8C7AGCAiVqEnJza3lib3gtc3RyZXRjaGNvbXIPCxIISW5jaWRlbnQY-wEMFA", token1); // default of 'open' status
         //verifyGetListOfIncidents(applicationId, "all", "feedback", "3", null, token1);
         //verifyGetListOfIncidents(applicationId, "closed", null, "3", null, token1);
         //verifyGetListOfIncidents(applicationId, "all", "log", "3", null, token1);
@@ -375,15 +381,17 @@ public class ClientTest {
         // =================
         // PARAMS:: verifyGetIncidentInfo(String theApplicationId, String theIncidentId, String theIncludeEvents, String theUserToken)
         //verifyGetIncidentInfo(applicationId, theIncidentId, theIncludeEvents, token1);
-        //verifyGetIncidentInfo(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPABDA", "true", token1);
+//        verifyGetIncidentInfo(applicationId, incidentId, "true", token1);
 
         // ===============
         // UPDATE INCIDENT
         // ===============
-        // PARAMS:: verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theUserToken)
-        //verifyUpdateIncident(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPcBDA", "closed", token1);
-        //verifyUpdateIncident(applicationId, "bad_id", "new", token1);
-
+        // PARAMS:: verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theIssueAction, String theUserToken)
+        //verifyUpdateIncident(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GPcBDA", "closed", null, token1);
+//        String issueAction = "create";
+//        String thisIncidentId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDwsSCEluY2lkZW50GLYCDA";
+//        verifyUpdateIncident(applicationId, thisIncidentId, "open", issueAction, token1); // create issue with default issue tracking system (e.g. Github)
+ 
         // =======================
         // REMOTE CONTROL INCIDENT
         // =======================
@@ -412,9 +420,9 @@ public class ClientTest {
 //        String mobileCarrierId = "103";
 //        verifyRequestConfirmationCode(emailAddress, phoneNumber, mobileCarrierId);
 
-        // ============
-        // CRTEATE USER
-        // ============
+        // ===========
+        // CREATE USER
+        // ===========
         //
         // NOTE: this test authenticates via the a priori token. Though this API is not called by a client app, the token is used to bypass authentication
         //       in the filter. Without this token, the filter would have to be modified for test purposes to allow this call even though there is no
@@ -469,6 +477,13 @@ public class ClientTest {
 //        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, emailConfirmationCode, phoneConfirmationCode, password);
         String tokenmp = "d9v57k44ntk4ucp79lr52533r1";
         
+        // ================
+        // CREATE DEMO USER
+        // ================
+        //
+        // PARAMS:: String verifyCreateDemoUser()
+        //verifyCreateDemoUser();
+
         // =================
         // GET LIST OF USERS
         // =================
@@ -497,7 +512,7 @@ public class ClientTest {
         // PARAMS:: verifyConfirmUser(String theEmailConfirmationCode, String thePhoneConfirmationCode, String theEmailAddress, String thePhoneNumber)
 //        String emailConfirmationCode = "123";
 //        String phoneConfirmationCode = null;
-//        String emailAddress = "gale@stretchcom.com";
+//        String emailAddress = "joepwro@gmail.com";
 //        String phoneNumber = null;
 //        verifyConfirmUser(emailConfirmationCode, phoneConfirmationCode, emailAddress, phoneNumber);
 
@@ -572,9 +587,9 @@ public class ClientTest {
         //String instanceUrl = "fruition18.service-now.com";
         //String summary = "ios version 5.1, app version 2.0";
 
-//        String userId = "nickw";
-//        String userName = "Nick Wroblewski";
-//        String application = "LiveFeed";
+//        String userId = "steveH";
+//        String userName = "Steven Hawking";
+//        String application = "Universe";
 //        String version = "1.1";
 //        String instanceUrl = "fruition18.service-now.com";
 //        String summary = "ios version 5.1, app version 2.0";
@@ -583,8 +598,9 @@ public class ClientTest {
         // =====================
         // GET LIST OF END USERS
         // =====================
-        // PARAMS:: verifyGetListOfEndUsers(String theApplicationId, String theUserToken)
-        //verifyGetListOfEndUsers(applicationId, token1);
+        // PARAMS:: verifyGetListOfEndUsers(String theApplicationId, String thePageSize, String theCursor, String theUserToken)
+        //verifyGetListOfEndUsers(applicationId, "2", null, token1);
+        //verifyGetListOfEndUsers(applicationId, "2", "E-ABAOsB8gEOY3JlYXRlZEdtdERhdGX6AQkIgJb4y5b4rwLsAYICJWoScnNreWJveC1zdHJldGNoY29tcg8LEghJbmNpZGVudBj7AQwU", token1);
 
         // =================
         // GET END USER INFO
@@ -611,6 +627,62 @@ public class ClientTest {
 		// ===============
 		//verifyUserMigration("archiverTask", null);         // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
 		//verifyUserMigration("cleanRskyboxLogsTask", null); // removes most rSkybox logs created on 4/28/2012 by an infinite loop in the rSkybox client
+        
+		// ========
+		// DEMO URL
+		// ========
+		//verifyDemo();   // invokes demo url
+        
+		// =========================
+		// CREATE GITHUB OAUTH TOKEN
+		// =========================
+        // Had to do this manually and then hard code the Github token in the rSkybox Java code
+        // TODO a better way?
+        //generateGithubToken("rSkybox", "redst0ne");
+        
+
+        // =============
+        // CREATE STREAM
+        // =============
+        // PARAMS:: verifyCreateStream(String theApplicationId, String theStreamName, String theUserId, String theMemberId, String theToken)
+//        String streamName = "wednesdayStream";
+//        String userId = null;
+//        String memberId = "joepwro";
+//        verifyCreateStream(applicationId, streamName, userId, memberId, token1);
+        
+
+        // =============
+        // UPDATE STREAM
+        // =============
+        // PARAMS:: verifyUpdateStream(String theApplicationId, String theStreamId, String theStatus, String theToken)
+//        String streamId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDQsSBlN0cmVhbRi8Agw";
+//        String status = "closed";
+//        verifyUpdateStream(applicationId, streamId, status, token1);
+        
+
+        // =============
+        // CREATE PACKET
+        // =============
+        // PARAMS:: verifyCreatePacket(String theApplicationId, String theStreamId, String theBody String theToken)
+//        String body = "packet #5";
+//        String streamId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDQsSBlN0cmVhbRi8Agw";
+//        verifyCreatePacket(applicationId, streamId, body, token1);
+        
+
+        // ============
+        // LIST PACKETS
+        // ============
+        // PARAMS:: verifyListPackets(String theApplicationId, String theStreamId, String theToken)
+//        String streamId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yDQsSBlN0cmVhbRi8Agw";
+//        verifyListPackets(applicationId, streamId, token1);
+       
+
+        // =============
+        // Mini Session
+        // =============
+        // PARAMS:: miniSession(String theApplicationId, String theToken)
+        //miniSession(applicationId, token1);
+
     }
 
     /**
@@ -748,6 +820,48 @@ public class ClientTest {
         version = "1.1";
         verifyCreateEndUser(applicationId, userId, userName, application, version, instanceUrl, summary, appToken);
     }
+    
+    // Somewhat at a loss how to authenticate to the Github API
+    // Attempting to create a github application specific token here in the test program and then moving that token to the rSkybox server code.
+    // Using Github's Authorization API
+    // Docs say this API requires basic authentication -- a bit confused which login/password to use so passing those in as params
+    private static JSONObject generateGithubToken(String theLogin, String thePassword) {
+        if(isLoggingEnabled) System.out.println("\n\n verifyCreateAppMember() starting .....\n");
+        
+    	// Need to be kept current from the application page on Github
+        String RSKYBOX_CLIENT_ID = "a4ec3edf0db5370523e1";
+    	String RSKYBOX_CLIENT_SECRET = "585340aabdb07a0f48c7ff36a36321e2600cf891";
+
+        String urlStr = "https://api.github.com/authorizations";
+        System.out.println("urlStr = " + urlStr + "\n");
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("note", "generated via rSkybox rest-text for use on rSkybox server - ugly");
+            json.put("client_id", RSKYBOX_CLIENT_ID);
+            json.put("client_secret", RSKYBOX_CLIENT_SECRET);
+            
+			JSONArray scopesJsonArray = new JSONArray();
+			scopesJsonArray.put("user");
+			scopesJsonArray.put("repo");
+			json.put("scopes", scopesJsonArray);
+
+            System.out.println(json.toString());
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), theLogin, thePassword);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            json = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyCreateAppMember() complete");
+        }
+        return json;
+    }
+
 
     private static JSONObject verifyRequestConfirmationCode(String theEmailAddress, String thePhoneNumber, String theMobileCarrierId) {
         if(isLoggingEnabled) System.out.println("\n\n verifyRequestConfirmationCode() starting .....\n");
@@ -1418,7 +1532,7 @@ public class ClientTest {
         }
     }
 
-    private static void verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theUserToken) {
+    private static void verifyUpdateIncident(String theApplicationId, String theIncidentId, String theNewStatus, String theIssueAction, String theUserToken) {
         System.out.println("\n\n verifyUpdateIncident() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + INCIDENT_RESOURCE_URI + "/" + theIncidentId;
         System.out.println("urlStr = " + urlStr + "\n");
@@ -1426,6 +1540,7 @@ public class ClientTest {
 
         try {
             json.put("status", theNewStatus);
+            if(theIssueAction != null) json.put("issueTracking", theIssueAction); 
 
             URL url = new URL(urlStr);
             String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theUserToken);
@@ -1491,6 +1606,27 @@ public class ClientTest {
             e.printStackTrace();
         } finally {
             System.out.println("verifyCreateUser() complete");
+        }
+        return json;
+    }
+
+    private static JSONObject verifyCreateDemoUser() {
+        if(isLoggingEnabled) System.out.println("\n\n verifyCreateDemoUser() starting .....\n");
+        String urlStr = REST_BASE_URL + USER_RESOURCE_URI + "/demo";
+        JSONObject json = new JSONObject();
+        try {
+            System.out.println(json.toString());
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", null);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            json = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyCreateDemoUser() complete");
         }
         return json;
     }
@@ -1693,9 +1829,18 @@ public class ClientTest {
         return json;
     }
 
-    private static void verifyGetListOfEndUsers(String theApplicationId, String theUserToken) {
+    private static void verifyGetListOfEndUsers(String theApplicationId, String thePageSize, String theCursor, String theUserToken) {
         System.out.println("\n\n verifyGetListOfEndUsers() starting .....\n");
         String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + END_USER_RESOURCE_URI;
+        urlStr = urlStr + "?" + "fakeFirstParam=none";
+        if(thePageSize != null) {
+            String encodedPageSize = ClientTest.encode(thePageSize);
+            urlStr = urlStr + "&" + "pageSize=" + encodedPageSize;
+        }
+        if(theCursor != null) {
+            String encodedCursor = ClientTest.encode(theCursor);
+            urlStr = urlStr + "&" + "cursor=" + encodedCursor;
+        }
         System.out.println("urlStr = " + urlStr + "\n");
 
         try {
@@ -1804,6 +1949,246 @@ public class ClientTest {
 		}
 		return token;
 	}
+	
+	private static JSONObject verifyCreateStream(String theApplicationId, String theStreamName, String theUserId, String theMemberId, String theToken) {
+        System.out.println("\n verifyCreateStream() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + STREAM_URI;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+        JSONObject jsonReturn = null;
+
+        try {
+            if(theStreamName !=null) json.put("name", theStreamName);
+            if(theUserId !=null) json.put("userId", theUserId);
+            if(theMemberId !=null) json.put("memberId", theMemberId);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", theToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            
+            jsonReturn = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyCreateStream() complete\n");
+        }
+        
+        return jsonReturn;
+	}
+	
+	private static JSONObject verifyUpdateStream(String theApplicationId, String theStreamId, String theStatus, String theToken) {
+        System.out.println("\n verifyUpdateStream() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + STREAM_URI + "/" + theStreamId;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+        JSONObject jsonReturn = null;
+
+        try {
+            if(theStatus !=null) json.put("status", theStatus);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_PUT, json.toString(), "login", theToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            
+            jsonReturn = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyUpdateStream() complete\n");
+        }
+        
+        return jsonReturn;
+	}
+	
+	private static JSONObject verifyCreatePacket(String theApplicationId, String theStreamId, String theBody, String theToken) {
+        System.out.println("\n verifyCreatePacket() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + STREAM_URI + "/" + theStreamId + "/" + PACKET_URI;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+        JSONObject jsonReturn = null;
+
+        try {
+            if(theBody !=null) json.put("body", theBody);
+
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_POST, json.toString(), "login", theToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            
+            jsonReturn = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyCreatePacket() complete\n");
+        }
+        
+        return jsonReturn;
+	}
+	
+	private static JSONObject verifyListPackets(String theApplicationId, String theStreamId, String theToken) {
+        System.out.println("\n verifyListPackets() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + STREAM_URI + "/" + theStreamId + "/" + PACKET_URI;
+        System.out.println("urlStr = " + urlStr + "\n");
+        JSONObject json = new JSONObject();
+        JSONObject jsonReturn = null;
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, json.toString(), "login", theToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            
+            jsonReturn = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyListPackets() complete\n");
+        }
+        
+        return jsonReturn;
+	}
+	
+	private static Boolean miniSession(String theApplicationId, String theToken) {
+		JSONObject json = null;
+		Boolean wasSuccessful = false;
+        String streamName = "miniSession_1";
+        String streamId = null;
+        String userId = "coolUser";
+        String memberId = "joepwro";
+        
+        try {
+    		
+        	///////////////////////////
+    		// 1. member creates stream
+        	///////////////////////////
+            json = verifyCreateStream(theApplicationId, streamName, null, memberId, theToken);
+            if(!apiSuccess("createStream for member", json)) {return false;}
+            
+            streamId = json.getString("id");
+            Boolean created = json.getBoolean("created");
+            if(!assertTrue(created, "create stream for member should return create true")) {return false;}
+    		
+            //////////////////////////////////////
+    		// 2. customer joins stream using name
+            //////////////////////////////////////
+            json = verifyCreateStream(theApplicationId, streamName, userId, null, theToken);
+            if(!apiSuccess("createStream for user", json)) {return false;}
+            String memStreamId = json.getString("id");
+            if(!assertTrue(streamId.equals(memStreamId), "create stream for user should return same stream ID as create stream for member")) {return false;}
+    		
+            /////////////////////////////////
+    		// 3. customer send some packets
+            /////////////////////////////////
+            String base = "miniSession packet #";
+            json = verifyCreatePacket(theApplicationId, streamId, base+"1", theToken);
+            if(!apiSuccess("customer send some packets 1", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"2", theToken);
+            if(!apiSuccess("customer send some packets 2", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"3", theToken);
+            if(!apiSuccess("customer send some packets 3", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"4", theToken);
+            if(!apiSuccess("customer send some packets 4", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"5", theToken);
+            if(!apiSuccess("customer send some packets 5", json)) {return false;}
+    		
+            //////////////////////////////////////////
+    		// 4. member reads all packets sent so far
+            //////////////////////////////////////////
+            json = verifyListPackets(theApplicationId, streamId, theToken);
+            JSONArray packets = json.getJSONArray("packets");
+            if(!assertTrue(packets.length() == 5, "member reads first 5 packets")) {return false;}
+            JSONObject jsonPacketObject = packets.getJSONObject(0);
+            String body = jsonPacketObject.getString("body");
+            if(!assertTrue(body.equals(base+"1"), "first packet returned had wrong body")) {return false;}
+    		
+            /////////////////////////////////
+    		// 5. customer sends more packets
+            /////////////////////////////////
+            json = verifyCreatePacket(theApplicationId, streamId, base+"6", theToken);
+            if(!apiSuccess("customer send some packets 6", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"7", theToken);
+            if(!apiSuccess("customer send some packets 7", json)) {return false;}
+    		
+            //////////////////////////
+    		// 6. member reads packets
+            //////////////////////////
+            json = verifyListPackets(theApplicationId, streamId, theToken);
+            packets = json.getJSONArray("packets");
+            if(!assertTrue(packets.length() == 2, "member reads next 2 packets")) {return false;}
+            jsonPacketObject = packets.getJSONObject(0);
+            body = jsonPacketObject.getString("body");
+            if(!assertTrue(body.equals(base+"6"), "first packet in second group returned had wrong body")) {return false;}
+            
+            json = verifyListPackets(theApplicationId, streamId, theToken);
+            packets = json.getJSONArray("packets");
+            if(!assertTrue(packets.length() == 0, "member does third read and there should be no packets")) {return false;}
+    		
+            ////////////////////////////
+    		// 7. customer closes stream
+            ////////////////////////////
+    		
+            ///////////////////////////////////////////////////////////////////
+    		// 8. member attempts to read packets -- informed stream has closed
+            ///////////////////////////////////////////////////////////////////
+    		
+            /////////////////
+    		// 9. end of test
+            /////////////////
+        } catch (JSONException e) {
+        	System.out.println("miniSession() JSONException e = " + e.getMessage());
+        }
+		
+		return wasSuccessful;
+	}
+	
+	private static Boolean assertTrue(Boolean theCondition, String theErrorMessage) {
+		if(theCondition) {return true;}
+		else {
+			System.out.println(theErrorMessage);
+			return false;
+		}
+	}
+	
+	private static Boolean apiSuccess(String theApiName, JSONObject theJson) {
+		try {
+	        if(theJson.has("apiStatus")) {
+	            String apiStatus = theJson.getString("apiStatus");
+	            if(!apiStatus.equalsIgnoreCase("100")) {
+	            	System.out.println(theApiName + " failed with apiStatus = " + apiStatus);
+	            	return false;
+	            }
+	        } else {
+	        	System.out.println(theApiName + " failed with HTTP error");
+	        	return false;
+	        }
+		} catch (JSONException e) {
+        	System.out.println(theApiName + " JSONException e = " + e.getMessage());
+        }
+		return true;
+	}
+
+    private static void verifyDemo() {
+        System.out.println("\n\n verifyDemo() starting .....\n");
+        String urlStr = HTTPS_BASE_URL + DEMO_URI;
+        System.out.println("urlStr = " + urlStr + "\n");
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, null, null);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyDemo() complete\n");
+        }
+    }
 
     // theUrl: complete url
     // thePayload: the JSON payload to send, if any.  Can be null.
@@ -1814,7 +2199,7 @@ public class ClientTest {
         System.out.println("ClientTest::send theJsonPayload = " + theJsonPayload);
         System.out.println("ClientTest::send theHttpMethod = " + theHttpMethod);
 
-        String response = "";
+        String response = "{}";  // default to empty JSON object
         HttpURLConnection connection = null;
         OutputStreamWriter writer = null;
         InputStreamReader reader = null;
@@ -1873,9 +2258,15 @@ public class ClientTest {
             int responseCode = connection.getResponseCode();
             System.out.println("responseCode = " + responseCode);
 
-            if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
+            if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED || responseCode == 422)  {
                 // read-back the response
-                reader = new InputStreamReader(connection.getInputStream());
+            	InputStream inputStream = null;
+            	if(responseCode == 422) {
+            		inputStream = connection.getErrorStream();
+            	} else {
+            		inputStream = connection.getInputStream();
+            	}
+                reader = new InputStreamReader(inputStream);
                 BufferedReader in = new BufferedReader(reader);
                 StringBuffer responseBuffer = new StringBuffer();
                 while (true) {
