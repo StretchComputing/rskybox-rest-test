@@ -681,7 +681,7 @@ public class ClientTest {
         // Mini Session
         // =============
         // PARAMS:: miniSession(String theApplicationId, String theToken)
-        //miniSession(applicationId, token1);
+        miniSession(applicationId, token1);
 
     }
 
@@ -2085,7 +2085,7 @@ public class ClientTest {
             /////////////////////////////////
     		// 3. customer send some packets
             /////////////////////////////////
-            String base = "miniSession packet #";
+            String base = "minisession packet #";
             json = verifyCreatePacket(theApplicationId, streamId, base+"1", theToken);
             if(!apiSuccess("customer send some packets 1", json)) {return false;}
             json = verifyCreatePacket(theApplicationId, streamId, base+"2", theToken);
@@ -2132,14 +2132,20 @@ public class ClientTest {
             ////////////////////////////
     		// 7. customer closes stream
             ////////////////////////////
+            String status = "closed";
+            verifyUpdateStream(theApplicationId, streamId, status, theToken);
+            if(!apiSuccess("close stream", json)) {return false;}
     		
             ///////////////////////////////////////////////////////////////////
     		// 8. member attempts to read packets -- informed stream has closed
             ///////////////////////////////////////////////////////////////////
+            json = verifyListPackets(theApplicationId, streamId, theToken);
+            if(!apiFailure("member attempts to read packets", json, "225")) {return false;}
     		
             /////////////////
     		// 9. end of test
             /////////////////
+            System.out.println("miniSession() PASSED all TESTS");
         } catch (JSONException e) {
         	System.out.println("miniSession() JSONException e = " + e.getMessage());
         }
@@ -2153,6 +2159,25 @@ public class ClientTest {
 			System.out.println(theErrorMessage);
 			return false;
 		}
+	}
+	
+	// returns true if expected apiStatus failure code is received
+	private static Boolean apiFailure(String theApiName, JSONObject theJson, String theFailStatus) {
+		try {
+	        if(theJson.has("apiStatus")) {
+	            String apiStatus = theJson.getString("apiStatus");
+	            if(!apiStatus.equalsIgnoreCase(theFailStatus)) {
+	            	System.out.println(theApiName + " expecting failed apiStatus = " + theFailStatus);
+	            	return false;
+	            }
+	        } else {
+	        	System.out.println(theApiName + " failed with HTTP error");
+	        	return false;
+	        }
+		} catch (JSONException e) {
+        	System.out.println(theApiName + " JSONException e = " + e.getMessage());
+        }
+		return true;
 	}
 	
 	private static Boolean apiSuccess(String theApiName, JSONObject theJson) {
