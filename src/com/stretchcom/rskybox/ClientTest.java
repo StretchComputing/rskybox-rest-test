@@ -645,10 +645,14 @@ public class ClientTest {
         // CREATE STREAM
         // =============
         // PARAMS:: verifyCreateStream(String theApplicationId, String theStreamName, String theUserId, String theMemberId, String theToken)
-//        String streamName = "wednesdayStream";
+//        String streamName = "sundayStream";
 //        String userId = null;
 //        String memberId = "joepwro";
-//        verifyCreateStream(applicationId, streamName, userId, memberId, token1);
+//        verifyCreateStream(applicationId, streamName, userId, memberId, token1); // rSkybox member creates stream
+//        String streamName = "sundayStream";
+//        String userId = "joepwro@gmail.com";
+//        String memberId = null;
+//        verifyCreateStream(applicationId, streamName, userId, memberId, token1); // application creates stream
         
 
         // =============
