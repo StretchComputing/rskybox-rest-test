@@ -115,9 +115,9 @@ public class ClientTest {
         //=====================================================================================================================
         // DEVELOPMENT SERVER(Localhost:8888) ==> Entity Keys
         //=====================================================================================================================
-        String token1 = "t8gg9rcv37peov61e1pig793h4"; //joepwro@gmail.com
+        String token1 = "4gtp49r8g2l2rrvcekbq2precd"; //joepwro@gmail.com
         String token2 = ""; //joe@stretchcom.com GAE
-        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEgsSC0FwcGxpY2F0aW9uGLECDA";
+        String applicationId = "ahJyc2t5Ym94LXN0cmV0Y2hjb21yEgsSC0FwcGxpY2F0aW9uGM4CDA";
         String rteamAppId = "";
         String applicationToken = "";
         String appMemberId = "";
@@ -147,7 +147,7 @@ public class ClientTest {
         // GET APPLICATION INFO
         // ====================
         // PARAMS:: verifyGetApplicationInfo(String theApplicationId, String theUserToken)
-        //verifyGetApplicationInfo(rteamAppId, token1);
+        //verifyGetApplicationInfo(applicationId, token1);
         //verifyGetApplicationInfo("ahJyc2t5Ym94LXN0cmV0Y2hjb21yEQsSC0FwcGxpY2F0aW9uGHYM", token1);
         //verifyGetApplicationInfo("ahRzfnJza3lib3gtc3RyZXRjaGNvbXITCxILQXBwbGljYXRpb24Y9agCDA", token2);
 
@@ -475,7 +475,7 @@ public class ClientTest {
 //        Boolean sendSmsNotifications = false;
 //        String password = "mfaiaone";
 //        verifyCreateUser(firstName, lastName, emailAddress, phoneNumber, mobileCarrierId, sendEmailNotifications, sendSmsNotifications, emailConfirmationCode, phoneConfirmationCode, password);
-        String tokenmp = "d9v57k44ntk4ucp79lr52533r1";
+//        String tokenmp = "d9v57k44ntk4ucp79lr52533r1";
         
         // ================
         // CREATE DEMO USER
@@ -645,14 +645,21 @@ public class ClientTest {
         // CREATE STREAM
         // =============
         // PARAMS:: verifyCreateStream(String theApplicationId, String theStreamName, String theUserId, String theMemberId, String theToken)
-//        String streamName = "sundayStream";
+//        String streamName = "thursdayStream";
 //        String userId = null;
 //        String memberId = "joepwro";
 //        verifyCreateStream(applicationId, streamName, userId, memberId, token1); // rSkybox member creates stream
-//        String streamName = "sundayStream";
-//        String userId = "joepwro@gmail.com";
-//        String memberId = null;
-//        verifyCreateStream(applicationId, streamName, userId, memberId, token1); // application creates stream
+        String streamName = "sunday2Stream";
+        String userId = "joepwro@gmail.com";
+        String memberId = null;
+        verifyCreateStream(applicationId, streamName, userId, memberId, token1); // application creates stream
+        
+        
+        // ===================
+        // GET LIST OF STREAMS
+        // ===================
+        // PARAMS:: verifyGetListOfStreams(String theApplicationId, String theUserToken)
+        //verifyGetListOfStreams(applicationId, token1);
         
 
         // =============
@@ -685,7 +692,7 @@ public class ClientTest {
         // Mini Session
         // =============
         // PARAMS:: miniSession(String theApplicationId, String theToken)
-        miniSession(applicationId, token1);
+        //miniSession(applicationId, token1);
 
     }
 
@@ -1981,6 +1988,23 @@ public class ClientTest {
         
         return jsonReturn;
 	}
+
+    private static void verifyGetListOfStreams(String theApplicationId, String theUserToken) {
+        System.out.println("\n\n verifyGetListOfStreams() starting .....\n");
+        String urlStr = REST_BASE_URL + "applications/" + theApplicationId + "/" + STREAM_URI;
+        System.out.println("urlStr = " + urlStr + "\n");
+
+        try {
+            URL url = new URL(urlStr);
+            String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "login", theUserToken);
+            if(isLoggingEnabled) System.out.println("repStr = " + response);
+            System.out.println("\n");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("verifyGetListOfStreams() complete\n");
+        }
+    }
 	
 	private static JSONObject verifyUpdateStream(String theApplicationId, String theStreamId, String theStatus, String theToken) {
         System.out.println("\n verifyUpdateStream() starting .....\n");
@@ -2150,6 +2174,54 @@ public class ClientTest {
     		// 9. end of test
             /////////////////
             System.out.println("miniSession() PASSED all TESTS");
+        } catch (JSONException e) {
+        	System.out.println("miniSession() JSONException e = " + e.getMessage());
+        }
+		
+		return wasSuccessful;
+	}
+	private static Boolean simpleProducer(String theStreamName, String theUserId, String theApplicationId, String theToken) {
+		JSONObject json = null;
+		Boolean wasSuccessful = false;
+        String streamId;
+        
+        try {
+    		
+        	/////////////////////////////
+    		// 1. customer creates stream
+        	/////////////////////////////
+            json = verifyCreateStream(theApplicationId, theStreamName, theUserId, null, theToken);
+            if(!apiSuccess("createStream for member", json)) {return false;}
+            
+            streamId = json.getString("id");
+            Boolean created = json.getBoolean("created");
+            if(!assertTrue(created, "create stream for member should return create true")) {return false;}
+    		
+            /////////////////////////////////
+    		// 2. customer send some packets
+            /////////////////////////////////
+            int packetCount = 0;
+            String base = "minisession packet #";
+            json = verifyCreatePacket(theApplicationId, streamId, base+"1", theToken);
+            packetCount++;
+            if(!apiSuccess("customer send some packets 1", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"2", theToken);
+            packetCount++;
+            if(!apiSuccess("customer send some packets 2", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"3", theToken);
+            packetCount++;
+            if(!apiSuccess("customer send some packets 3", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"4", theToken);
+            packetCount++;
+            if(!apiSuccess("customer send some packets 4", json)) {return false;}
+            json = verifyCreatePacket(theApplicationId, streamId, base+"5", theToken);
+            packetCount++;
+            if(!apiSuccess("customer send some packets 5", json)) {return false;}
+    		
+            /////////////////
+    		// 3. end of test
+            /////////////////
+            System.out.println("simpleProducer() -- " + packetCount + " pa packets produced ");
         } catch (JSONException e) {
         	System.out.println("miniSession() JSONException e = " + e.getMessage());
         }
