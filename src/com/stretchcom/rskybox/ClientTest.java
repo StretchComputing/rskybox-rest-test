@@ -311,33 +311,33 @@ public class ClientTest {
         //                                       List<String> appActionDescriptions, List<String> appActionTimestamps, List<String> appActionDurations,
         //                                       List<String> theStackBackTrace, String theLogName, String, theCreatedDate, String theSummary, 
         //                                       String theLocalEndpoint, String theRemoteEndpoint, String theUserToken)
-//        String userId = "joepwro";
-//        String userName = "Joe Wroblewski";
-//        String instanceUrl = "http://stretchcom.com/";
-//        String logLevel = "warn";
-//        String message = "joe for arc 555";
-//		List<String> stackBackTraces = new ArrayList<String>();
-//		stackBackTraces.add("method1()");
-//		stackBackTraces.add("method2()");
-//		stackBackTraces.add("method3()");
-//		stackBackTraces.add("method4()");
-//		stackBackTraces.add("method5()");
-//		stackBackTraces.add("method6()");
-//		List<String> appDescriptions = new ArrayList<String>();
-//		appDescriptions.add("first user action");
-//		appDescriptions.add("second user action");
-//		List<String> appTimestamps = new ArrayList<String>();
-//		appTimestamps.add("2012-04-14 05:55:21.123");
-//		appTimestamps.add("2012-04-14 05:55:22.321");
-//		List<String> appDurations = new ArrayList<String>();
-//		appDurations.add("22");
-//		appDurations.add("19");
-//		String logName = "test.incidents.pagination.2";
-//        String createdDate = "2012-06-04T8:59:00.567Z";
-//        String summary = "ios 5.1, rteam version 3.1";
-//        String lep = "lep123";
-//        String rep = "rep456";
-//		verifyCreateClientLog(applicationId, userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, lep, rep, token1);
+        String userId = "joepwro";
+        String userName = "Joe Wroblewski";
+        String instanceUrl = "http://stretchcom.com/";
+        String logLevel = "warn";
+        String message = "setting up incidents for migration test";
+		List<String> stackBackTraces = new ArrayList<String>();
+		stackBackTraces.add("method1()");
+		stackBackTraces.add("method2()");
+		stackBackTraces.add("method3()");
+		stackBackTraces.add("method4()");
+		stackBackTraces.add("method5()");
+		stackBackTraces.add("method6()");
+		List<String> appDescriptions = new ArrayList<String>();
+		appDescriptions.add("first user action");
+		appDescriptions.add("second user action");
+		List<String> appTimestamps = new ArrayList<String>();
+		appTimestamps.add("2012-04-14 05:55:21.123");
+		appTimestamps.add("2012-04-14 05:55:22.321");
+		List<String> appDurations = new ArrayList<String>();
+		appDurations.add("22");
+		appDurations.add("19");
+		String logName = "test.incidents.migration.1";
+        String createdDate = "2012-06-04T8:59:00.567Z";
+        String summary = "ios 5.1, rteam version 3.1";
+        String lep = null; //"lep123";
+        String rep = null; //"rep456";
+		verifyCreateClientLog(applicationId, userId, userName, instanceUrl, logLevel, message, appDescriptions, appTimestamps, appDurations, stackBackTraces, logName, createdDate, summary, lep, rep, token1);
 
 		
         // =======================
@@ -378,7 +378,7 @@ public class ClientTest {
         //verifyGetListOfIncidents(applicationId, "all", "log",  "2", "E-ABAOsB8gESbGFzdFVwZGF0ZWRHbXREYXRl-gEJCLi-y-aW-K8C7AGCAiVqEnJza3lib3gtc3RyZXRjaGNvbXIPCxIISW5jaWRlbnQY-wEMFA", token1); // default of 'open' status
         //verifyGetListOfIncidents(applicationId, "all", "feedback", "3", null, token1);
         //verifyGetListOfIncidents(applicationId, "closed", null, "3", null, token1);
-        verifyGetListOfIncidents(applicationId, "all", "log", "3", null, token1); //jpw5
+        //verifyGetListOfIncidents(applicationId, "all", "log", "3", null, token1); //jpw5
 
         // =================
         // GET INCIDENT INFO
@@ -631,6 +631,7 @@ public class ClientTest {
 		// ===============
 		//verifyUserMigration("archiverTask", null);         // sets the 'activeThruGmtDate' in hitorical entires of ClientLog, CrashDetect and Feedback
 		//verifyUserMigration("cleanRskyboxLogsTask", null); // removes most rSkybox logs created on 4/28/2012 by an infinite loop in the rSkybox client
+		//verifyUserMigration("setLepRepInIncidentsTask", null); // defaults the LEP and REP in legacy incidents to "NA" //jpw5
         
 		// ========
 		// DEMO URL
