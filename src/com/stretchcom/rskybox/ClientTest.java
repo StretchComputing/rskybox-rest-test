@@ -378,7 +378,7 @@ public class ClientTest {
         //verifyGetListOfIncidents(applicationId, "all", "log",  "2", "E-ABAOsB8gESbGFzdFVwZGF0ZWRHbXREYXRl-gEJCLi-y-aW-K8C7AGCAiVqEnJza3lib3gtc3RyZXRjaGNvbXIPCxIISW5jaWRlbnQY-wEMFA", token1); // default of 'open' status
         //verifyGetListOfIncidents(applicationId, "all", "feedback", "3", null, token1);
         //verifyGetListOfIncidents(applicationId, "closed", null, "3", null, token1);
-        //verifyGetListOfIncidents(applicationId, "all", "log", "3", null, token1);
+        verifyGetListOfIncidents(applicationId, "all", "log", "3", null, token1); //jpw5
 
         // =================
         // GET INCIDENT INFO
@@ -696,9 +696,9 @@ public class ClientTest {
         // CREATE ENDPOINT FILTER
         // ======================
         // PARAMS:: verifyCreateEndpointFilter(String theApplicationId, String theLocalEndpoint, String theRemoteEndpoint, String theToken)
-//        String localEndpoint = "qa";
-//        String remoteEndpoint = "https://arc.dagher.mobi.com";
-//        verifyCreateEndpointFilter(applicationId, localEndpoint, remoteEndpoint, token1);
+//        String localEndpoint = "na";
+//        String remoteEndpoint = "na";
+//        verifyCreateEndpointFilter(applicationId, localEndpoint, remoteEndpoint, token1); //jpw5
         
         
         // ============================
@@ -712,7 +712,7 @@ public class ClientTest {
         // UPDATE ENDPOINT FILTER
         // ======================
         // PARAMS:: verifyUpdateEndpointFilter(String theApplicationId, String theEndpointFilterId, Boolean theIsActive, String theUserToken)
-        verifyUpdateEndpointFilter(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yFQsSDkVuZHBvaW50RmlsdGVyGNoCDA", false, token1);
+        //verifyUpdateEndpointFilter(applicationId, "ahJyc2t5Ym94LXN0cmV0Y2hjb21yFQsSDkVuZHBvaW50RmlsdGVyGOgCDA", false, token1);
 
         
         // ======================
